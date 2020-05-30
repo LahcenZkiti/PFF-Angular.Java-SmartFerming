@@ -1,0 +1,57 @@
+{"properties": [
+  {
+    "name": "spring.jpa.hibernate.show-sql",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.hibernate.show-sql'"
+  },
+  {
+    "name": "spring.datasource.driverClasseName",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.driverClasseName'"
+  },
+  {
+    "name": "dir.images",
+    "type": "java.lang.String",
+    "description": "A description for 'dir.images'"
+  },
+  {
+    "name": "spring.datasource.driverClasseName",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.driverClasseName'"
+  },
+  {
+    "name": "spring.datasource.driverClasseName",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.driverClasseName'"
+  },
+  {
+    "name": "spring.datasource.driverClasseName",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.driverClasseName'"
+  },
+  {
+    "name": "spring.datasource.driverClasseName",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.driverClasseName'"
+  },
+  {
+    "name": "spring.datasource.driverClasseName",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.driverClasseName'"
+  },
+  {
+    "name": "spring.datasource.driverClasseName",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.driverClasseName'"
+  },
+  {
+    "name": "spring.datasource.driverClasseName",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.driverClasseName'"
+  },
+  {
+    "name": "spring.datasource.driverClasseName",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.driverClasseName'"
+  }
+]}
