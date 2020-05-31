@@ -1,0 +1,23 @@
+<div class="body">
+
+    <header class="text-white text-center">
+        <h1 class="p-4">Diagno Plant</h1>
+        <p class="lead mb-5">Bienvenue zkiti lahcen Veuillez télécharger une image de votre plant de tomate pour détecter la maladie</p>
+        <img src="https://www.icone-png.com/png/41/41466.png" alt="" width="150" class="mb-4">
+    </header>
+
+    <div class="row py-4">
+        <div class="col-lg-6 mx-auto">
+            <div class="input-group mb-3 px-2 py-2 rounded-pill  shadow-sm">
+                <input id="upload" type="file" name="file" class="form-control border-0" (change)="onFileSelected($event)">
+                <label id="upload-label" for="upload" class="font-weight-light">Choose file</label>
+                <div class="input-group-append">
+                    <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                </div>
+            </div>
+            <div class="mb-3 px-2 py-2 text-center">
+                <button class="btn btn-light" type="button" (click)="onUpload()">Upload image</button>
+            </div>
+        </div>
+    </div>
+</div>
