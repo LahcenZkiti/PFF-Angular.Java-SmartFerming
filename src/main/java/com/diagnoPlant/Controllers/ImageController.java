@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,7 @@ import com.diagnoPlant.Repositorys.ImageRepository;
  *
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class ImageController {
 	@Autowired
 	private ImageRepository imageRepository;
@@ -37,11 +39,6 @@ public class ImageController {
 		Image im = new Image();
 		imageRepository.save(im);
     	im.setEtatTraitement(false);
-    	
-    	
-        if (file.isEmpty()) {
-            return new ResponseEntity<>("veuillez sélectionner une image !", HttpStatus.OK);
-        }
 
         try {
         	im.setImage(file.getOriginalFilename());
@@ -52,7 +49,7 @@ public class ImageController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>("Votre image a bien été enregistrée !", new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<>( new HttpHeaders(), HttpStatus.OK);
 
     }
 	
