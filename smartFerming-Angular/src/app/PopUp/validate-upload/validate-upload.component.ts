@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 /**
@@ -12,26 +12,19 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class ValidateUploadComponent implements OnInit {
 
   /**
+   * Input  of validate upload component
+   */
+  @Input() msg;
+  /**
    * Creates an instance of validate upload component.
    * @param activeModal 
    */
-  constructor(private activeModal:NgbActiveModal) { }
+  constructor(public activeModal:NgbActiveModal) { }
 
+  
   ngOnInit(): void {
   }
 
-  /**
-   * Confirms validate upload component
-   */
-  confirm(){
-    this.activeModal.close(true);
-  }
-
-  /**
-   * Cancels validate upload component
-   */
-  cancel(){
-    this.activeModal.close(false);
-  }
+  
 
 }

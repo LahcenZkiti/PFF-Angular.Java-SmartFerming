@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -11,10 +12,11 @@ public class Image implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private boolean etatTraitement;
 	private String image;
+	private String urlImage;
 	/**
 	 * @param image
 	 */
@@ -24,10 +26,25 @@ public class Image implements Serializable{
 	}
 	/**
 	 * @param id
+	 * @param image
+	 * @param urlString
 	 */
-	public Image(Long id) {
+	public Image(Long id, String image, String urlString) {
 		super();
 		this.id = id;
+		this.image = image;
+		this.urlImage = urlString;
+	}
+	
+	
+	/**
+	 * @param image
+	 * @param urlString
+	 */
+	public Image(String image, String urlImage) {
+		super();
+		this.image = image;
+		this.urlImage = urlImage;
 	}
 	/**
 	 * @return the id
@@ -66,6 +83,18 @@ public class Image implements Serializable{
 	 */
 	public void setImage(String image) {
 		this.image = image;
+	}
+	/**
+	 * @return the urlImage
+	 */
+	public String getUrlImage() {
+		return urlImage;
+	}
+	/**
+	 * @param urlImage the urlImage to set
+	 */
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
 	}
 	
 	

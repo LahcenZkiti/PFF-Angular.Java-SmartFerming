@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 /**
  * Component
  */
@@ -14,7 +13,7 @@ export class ExpertComponent implements OnInit {
   /**
    * Url  of expert component
    */
-  url = 'http://localhost:8080/telechargerimage';
+  API_URL = 'http://localhost:8080/';
 
   /**
    * Selected file of expert component
@@ -48,15 +47,16 @@ export class ExpertComponent implements OnInit {
   onUpload(){
     const fd = new FormData();
     fd.append('file', this.selectedFile, this.selectedFile.name)
-    this.http.post(this.url, fd).subscribe(res => {
+    this.http.post(this.API_URL + 'telechargerimage', fd).subscribe(res => {
       JSON.stringify(res);
-      if(this.selectedFile.name === null){
+      if(!this.selectedFile.name){
         console.log('veuillez sélectionner une image !')
       }else{
         console.log("Votre image a bien été enregistrée! \nNous vous enverrons une réponse d'expert \nNous vous remercions de votre confiance ...")
       }
     })
   }
+  
   
 
 }

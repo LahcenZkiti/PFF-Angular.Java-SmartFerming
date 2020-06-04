@@ -1,0 +1,16 @@
+<!--navbar-->
+<app-navigation-expert></app-navigation-expert>
+<!--content-->
+<div class="content">
+    <div class="mb-4" *ngFor="let image of images" fxLayoutAlign="center">
+        <div class="card" style="width:500px">
+            <div class="card-header">
+                <h4>{{image.image}}<i class="fas fa-images"></i></h4>
+            </div>
+            <div class="card-body p-4">
+                <img class="card-img-top" src={{image.urlImage}}  alt="">
+                <button fxLayoutAlign="center" class="btn btn-secondary m-2" type="submit" (click)="getImgById(image.image)">Traiter l'image</button>
+            </div>
+        </div>
+    </div>
+</div>
