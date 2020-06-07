@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ImagesService } from 'src/app/services/images.service';
 import { Images } from 'src/app/models/images';
+import { NgForm } from '@angular/forms';
+import { MaladiesPlant } from 'src/app/models/maladies-plant';
 
 @Component({
   selector: 'app-espace-response',
@@ -10,7 +12,24 @@ import { Images } from 'src/app/models/images';
 })
 export class EspaceResponseComponent implements OnInit {
 
-  images : Images;
+  images : Images = {
+    image:'',
+    etatTraitement:false,
+    urlImage: '',
+    infosCompl:'',
+    maladiePlantes:[
+      {
+        nomMaladie:'',
+        symptomes:'',
+        traitement:'',
+        causes:'',
+        actionsPreventives:''
+      }
+    ]
+  }
+
+  maladies: MaladiesPlant;
+
   constructor(private route:ActivatedRoute,
               private imagesService:ImagesService) { }
 
@@ -22,6 +41,11 @@ export class EspaceResponseComponent implements OnInit {
       });
       console.log(imgId);
     })
+  }
+
+
+  onValid(form:NgForm) {
+
   }
 
 }

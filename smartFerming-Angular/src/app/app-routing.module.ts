@@ -3,10 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { DetectionAutoComponent } from './pages/detection-auto/detection-auto.component';
 import { ExpertComponent } from './pages/expert/expert.component';
 import { EspaceExpertComponent } from './pages/espace-expert/espace-expert.component';
-import { EspaceResponseComponent } from './pages/espace-response/espace-response.component';
 import { AddMaladiePlantComponent } from './pages/maladiesPlant/add-maladie-plant/add-maladie-plant.component';
 import { ListMaladiePlantComponent } from './pages/maladiesPlant/list-maladie-plant/list-maladie-plant.component';
 import { InfoMaladiesComponent } from './pages/maladiesPlant/info-maladies/info-maladies.component';
+import { EspaceResponseComponent } from './pages/espace-response/espace-response.component';
 
 
 const routes: Routes = [

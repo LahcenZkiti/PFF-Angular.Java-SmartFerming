@@ -1,6 +1,5 @@
 package com.diagnoPlant.Controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.diagnoPlant.Models.MaladiePlante;
@@ -48,29 +46,19 @@ public class MaladiePlantController {
 	}
 	
 	
+	
 	/**
 	 * Cette méthode permet d'afficher les maladies 
 	 * @param nomMaladie
 	 * @return
 	 */
 	@GetMapping("/listMaladies")
-	public ResponseEntity<List<MaladiePlante>> getAllMaladies(@RequestParam(required = false) String nomMaladie) {
-		try {
-			List<MaladiePlante> maladies = new ArrayList<MaladiePlante>();
-			
-			if (nomMaladie == null)
-				mldRepo.findAll().forEach(maladies::add);
-			else 
-				mldRepo.findByNomMaladieContains(nomMaladie).forEach(maladies::add);
-			
-			if (maladies.isEmpty()) {
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			}
-			return new ResponseEntity<>(maladies, HttpStatus.OK);
-	    } catch (Exception e) {
-	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
+	public ResponseEntity<List<MaladiePlante>> getAllMaladies() {
 		
+			List<MaladiePlante> maladies = mldRepo.findAll();
+			
+			return ResponseEntity.status(HttpStatus.OK).body(maladies);
+	
 	}
 	
 

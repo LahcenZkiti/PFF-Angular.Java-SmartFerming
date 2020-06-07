@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Image implements Serializable{
@@ -17,6 +18,10 @@ public class Image implements Serializable{
 	private boolean etatTraitement;
 	private String image;
 	private String urlImage;
+	private String infosCompl ;
+	
+	@ManyToOne
+	private MaladiePlante maladiePlante;
 	/**
 	 * @param image
 	 */
@@ -96,8 +101,33 @@ public class Image implements Serializable{
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
 	}
+	/**
+	 * @return the infosCompl
+	 */
+	public String getInfosCompl() {
+		return infosCompl;
+	}
+	/**
+	 * @param infosCompl the infosCompl to set
+	 */
+	public void setInfosCompl(String infosCompl) {
+		this.infosCompl = infosCompl;
+	}
+	
+	/**
+	 * @return the maladiePlante
+	 */
+	public MaladiePlante getMaladiePlante() {
+		return maladiePlante;
+	}
 	
 	
+	/**
+	 * @param maladiePlante the maladiePlante to set
+	 */
+	public void setMaladiePlante(MaladiePlante maladiePlante) {
+		this.maladiePlante = maladiePlante;
+	}
 
 
 

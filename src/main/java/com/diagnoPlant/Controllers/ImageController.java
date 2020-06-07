@@ -1,11 +1,16 @@
 package com.diagnoPlant.Controllers;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,13 +20,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-
+import org.springframework.http.MediaType;
 
 import com.diagnoPlant.Messages.ResponseMessage;
 import com.diagnoPlant.Models.Image;
@@ -38,6 +44,9 @@ import com.diagnoPlant.storage.ImageStorageService;
 public class ImageController {
 	@Autowired
 	private ImageRepository imageRepository;
+	
+	@Value("${dir.images}")
+	private String imageDir;
 
 	@Autowired
 	ImageStorageService storageService;
@@ -47,24 +56,49 @@ public class ImageController {
 	 * Cette méthode permet d'enregistrer les images 
 	 * @param id
 	 * @return
+	 * @throws IOException 
+	 * @throws IllegalStateException 
 	 */	
 	@PostMapping("/telechargerimage")
-	  public ResponseEntity<ResponseMessage> uploadImage(@RequestParam("file") MultipartFile file) {
-	    String message = "";
-	    
-	    Image im = new Image();
-    	im.setEtatTraitement(false);
-	    
+	public ResponseEntity<ResponseMessage> uploadImage(@RequestParam("file") MultipartFile file,Image image) throws IllegalStateException, IOException {
+		String message = "";
+    
+		if (!(file.isEmpty())) {image.setImage(file.getOriginalFilename());}
+		image.setEtatTraitement(false);
+		imageRepository.save(image);
+		
 	    try {
-	      storageService.save(file);
+	    	
 
-	      message = "Votre image a bien été enregistrée! : " + file.getOriginalFilename();
-	      return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+	    	if (!(file.isEmpty())) {
+				image.setImage(file.getOriginalFilename());
+				image.setUrlImage("http://localhost:8080/images/"+ file.getOriginalFilename());
+				
+				file.transferTo(new File(imageDir+ image.getId()));
+				
+				imageRepository.save(image);
+	    	}
+	    
+	    	
+			message = "Votre image a bien été enregistrée! : " + file.getOriginalFilename();
+			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+	      
 	    } catch (Exception e) {
-	      message = "L'image n'a pas pu être téléchargé : " + file.getOriginalFilename() + "!";
-	      return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+	    	message = "L'image n'a pas pu être téléchargé ";
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
 	    }
-	  }
+	}
+	
+	
+	@RequestMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] getImages(Long id) throws Exception {
+		File f = new File(imageDir+ id);
+		
+		return IOUtils.toByteArray(new FileInputStream(f));
+	}
+	
+	
 	
 	/**
 	 * Cette méthode permet d'afficher les images
@@ -74,18 +108,9 @@ public class ImageController {
 	@GetMapping(value = "/images")
 	public ResponseEntity<List<Image>> getImages(){
 		
-		//1- recuperer la liste des images
-		List<Image> image = storageService.loadAll().map(path -> {
-
-			String filename = path.getFileName().toString();
-			
-			//2- preparer les liens des images
-			String url = MvcUriComponentsBuilder
-			          .fromMethodName(ImageController.class, "getImage", path.getFileName().toString()).build().toString();
-			return new Image(filename, url);
-		}).collect(Collectors.toList());
+		List<Image> images = storageService.findAll();
 		
-		return ResponseEntity.status(HttpStatus.OK).body(image);
+		return ResponseEntity.status(HttpStatus.OK).body(images);
 	}
 	
 	/**

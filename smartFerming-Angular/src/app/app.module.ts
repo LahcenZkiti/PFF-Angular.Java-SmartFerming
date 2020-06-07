@@ -19,6 +19,7 @@ import { EspaceResponseComponent } from './pages/espace-response/espace-response
 import { AddMaladiePlantComponent } from './pages/maladiesPlant/add-maladie-plant/add-maladie-plant.component';
 import { ListMaladiePlantComponent } from './pages/maladiesPlant/list-maladie-plant/list-maladie-plant.component';
 import { InfoMaladiesComponent } from './pages/maladiesPlant/info-maladies/info-maladies.component';
+import { TraiterImgageComponent } from './PopUp/traiter-imgage/traiter-imgage.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { InfoMaladiesComponent } from './pages/maladiesPlant/info-maladies/info-
     EspaceResponseComponent,
     AddMaladiePlantComponent,
     ListMaladiePlantComponent,
-    InfoMaladiesComponent
+    InfoMaladiesComponent,
+    TraiterImgageComponent
   ],
   imports: [
     BrowserModule,

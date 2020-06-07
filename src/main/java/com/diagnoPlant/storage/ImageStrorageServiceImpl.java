@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,14 +37,14 @@ public class ImageStrorageServiceImpl implements ImageStorageService{
 	  }
 
 	  @Override
-	  public void save(MultipartFile file) {
+	  public Image save(MultipartFile file) {
 		  Image im = new Image();
 		  
 	    try {
 	    	im.setImage(file.getOriginalFilename());
 	    	im.setUrlImage("http://localhost:8080/images/"+file.getOriginalFilename());
 	      Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
-	      imageRepository.save(im);
+	      return imageRepository.save(im);
 	    } catch (Exception e) {
 	      throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
 	    }
@@ -78,4 +79,14 @@ public class ImageStrorageServiceImpl implements ImageStorageService{
 	      throw new RuntimeException("Could not load the files!");
 	    }
 	  }
+
+	@Override
+	public Image findById(Long id) {
+		return imageRepository.findById(id).get();
+	}
+
+	@Override
+	public List<Image> findAll() {
+		return imageRepository.findAll();
+	}
 }

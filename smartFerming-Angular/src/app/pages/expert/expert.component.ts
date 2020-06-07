@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Images } from 'src/app/models/images';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ValidateUploadComponent } from 'src/app/PopUp/validate-upload/validate-upload.component';
 /**
  * Component
  */
@@ -24,7 +27,8 @@ export class ExpertComponent implements OnInit {
    * Creates an instance of expert component.
    * @param http 
    */
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,
+              private modalService: NgbModal) { }
 
   /**
    * on init
@@ -49,10 +53,13 @@ export class ExpertComponent implements OnInit {
     fd.append('file', this.selectedFile, this.selectedFile.name)
     this.http.post(this.API_URL + 'telechargerimage', fd).subscribe(res => {
       JSON.stringify(res);
-      if(!this.selectedFile.name){
-        console.log('veuillez sélectionner une image !')
+      const modalRef = this.modalService.open(ValidateUploadComponent);
+      if(this.selectedFile.name.length > 0){
+        modalRef.componentInstance.msg = "Votre image a bien été enregistrée! \nNous vous enverrons une réponse d'expert \nNous vous remercions de votre confiance ...";
+          return true
       }else{
-        console.log("Votre image a bien été enregistrée! \nNous vous enverrons une réponse d'expert \nNous vous remercions de votre confiance ...")
+        modalRef.componentInstance.msg = 'veuillez sélectionner une image !';
+        return false;
       }
     })
   }

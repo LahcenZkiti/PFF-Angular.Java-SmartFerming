@@ -1,14 +1,26 @@
+<!--navbar-->
 <app-navigation-expert></app-navigation-expert>
 <!--content-->
 <div class="content">
-    <div class="mb-4" *ngFor="let image of images" fxLayoutAlign="center">
-        <div class="card" style="width:500px">
-            <div class="card-header">
-                <h4>{{image.image}}<i class="fas fa-images"></i></h4>
-            </div>
-            <div class="card-body p-4">
-                <img class="card-img-top" src={{image.urlImage}}  alt="">
-            </div>
+    <form (ngSubmit)="onValid(form)" #form="ngForm" *ngIf="images" class="justify-content-center p-4">
+        
+        <!-- <div class="form-group" *ngFor="let image of images">
+            <select>
+                <option >Nom de maladie</option>
+            </select>
+        </div> -->
+
+        <ul class="form-group" *ngFor="let item of images">
+            <li>{{item.image}}</li>
+        </ul>
+    
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1" style="font-size: x-large;">Informations complementaires</label>
+            <textarea [(ngModel)]="images.infosCompl" name="infosCompl" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Entrer les informations complementaires"></textarea>
         </div>
-    </div>
+    
+        <div class="form-group">
+            <button class="btn btn-secondary" type="submit">Valider</button>
+        </div>
+    </form>
 </div>
