@@ -35,6 +35,14 @@ export class ImagesService {
     return this.http.get<Image>(this.API_URL + 'images');
   }
 
+  findAllNonTrit() : Observable<Image> {
+    return this.http.get<Image>(this.API_URL + 'images/nontraiter');
+  }
+
+  findAllTrit() : Observable<Image> {
+    return this.http.get<Image>(this.API_URL + 'images/traiter');
+  }
+
   /**
    * Finds by id
    * @param id 

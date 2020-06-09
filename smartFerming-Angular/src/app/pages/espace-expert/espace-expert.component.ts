@@ -21,7 +21,7 @@ export class EspaceExpertComponent implements OnInit {
   }
 
   getImages() {
-    this.imagesServices.findAll().subscribe(images => {
+    this.imagesServices.findAllNonTrit().subscribe(images => {
       this.images = images
     })
   }

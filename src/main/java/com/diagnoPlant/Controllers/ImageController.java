@@ -210,6 +210,33 @@ public class ImageController {
 	
 	
 	
+	/**
+	 * Cette méthode permet d'afficher les images non traiter
+	 * @param id
+	 * @return
+	 */	
+	@GetMapping("/images/nontraiter")
+	public ResponseEntity<List<Image>> getImgNonTrit(){
+		List<Image> imagesNoTr = imageRepository.getImageNonTrit();
+		
+		return ResponseEntity.status(HttpStatus.OK).body(imagesNoTr);
+	}
+	
+	
+	/**
+	 * Cette méthode permet d'afficher les images traiter
+	 * @param id
+	 * @return
+	 */	
+	@GetMapping("/images/traiter")
+	public ResponseEntity<List<Image>> getImgTrit(){
+		List<Image> imagesTr = imageRepository.getImageTrit();
+		
+		return ResponseEntity.status(HttpStatus.OK).body(imagesTr);
+	}
+	
+	
+	
 }
 
 
