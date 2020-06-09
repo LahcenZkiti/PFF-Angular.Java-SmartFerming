@@ -1,0 +1,41 @@
+<!--nav bar-->
+<app-navigation></app-navigation>
+<!-- content-->
+<div class="content">
+    <div class="row row-cols-1 row-cols-md-3 p-4">
+        <div class="col mb-4" *ngFor="let image of images">
+        
+            <div class="card h-100" style="background-color: #d7dde8;">
+                <img src={{image.urlImage}}  class="card-img-top" alt="">
+                <div class="card-body">
+                    <h3 class="card-title">Recommandation d'expert</h3>
+
+                    <div *ngFor="let mld of image.maladiePlante | keyvalue">
+                        <div class="p-4">
+                            <h2 class="card-title">{{mld.key}}</h2>
+                            <p class="card-text">{{mld.value}}</p>
+                        </div> 
+
+                        <!-- <h5 class="card-title">Symptoms</h5>
+                        <p class="card-text"></p>
+
+                        <h5 class="card-title">Causes</h5>
+                        <p class="card-text"></p>
+
+                        <h5 class="card-title">Traitement</h5>
+                        <p class="card-text"></p>
+
+                        <h5 class="card-title">actionsPreventives</h5>
+                        <p class="card-text"></p> -->
+                    </div>
+
+                    <h5 class="card-title">Informations complementaires</h5>
+                    <p class="card-text">{{image.infosCompl}}</p>
+
+                    <p class="card-text"><small class="text-muted">Last updated 2 mins ago</small></p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
