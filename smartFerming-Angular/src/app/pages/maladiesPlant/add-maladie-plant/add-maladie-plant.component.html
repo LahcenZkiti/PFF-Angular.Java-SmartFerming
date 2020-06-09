@@ -1,0 +1,34 @@
+<!-- navbar -->
+<app-navigation-expert></app-navigation-expert>
+<!-- content -->
+<div class="content">
+    <form (ngSubmit)="addMaladie(form)" #form="ngForm" class="justify-content-center p-4">
+        <div class="form-group">
+            <label for="formGroupNomMal" style="font-size: x-large;">Nom de maladie</label>
+            <input [(ngModel)]="maladies.nomMaladie" name="nomMaladie" type="text" class="form-control" id="formGroupNomMal" placeholder="Entrer le nom de la maladie">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1" style="font-size: x-large;">Les symptomes</label>
+            <textarea [(ngModel)]="maladies.symptomes" name="symptomes" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Entrer les symptomes"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1" style="font-size: x-large;">Les causes</label>
+            <textarea [(ngModel)]="maladies.causes" name="causes" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Entrer les causes"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1" style="font-size: x-large;">Le traitement</label>
+            <textarea [(ngModel)]="maladies.traitement" name="traitement" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Entrer le traitement"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1" style="font-size: x-large;">Les actions préventives</label>
+            <textarea [(ngModel)]="maladies.actionsPreventives" name="actionsPreventives" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Entrer les actions préventives"></textarea>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-secondary" type="submit" (click)="open()">Enregistrer</button>
+        </div>
+    </form>
+</div>

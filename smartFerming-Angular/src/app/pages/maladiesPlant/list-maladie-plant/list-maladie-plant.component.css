@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  #myInput {
+    background-image: url('src/img/chercher.png');
+    background-size: 18px;
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+  
+  #myUL {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #myUL li a {
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block
+  }
+  
+  #myUL li a:hover:not(.header) {
+    background-color: #eee;
+  }
+
+div.content {
+    background-color: #757f9a;
+    background-image: linear-gradient(270deg, #d7dde8 5%, #757f9a 95%);
+}

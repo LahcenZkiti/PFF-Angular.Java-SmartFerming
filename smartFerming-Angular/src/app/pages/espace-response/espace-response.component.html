@@ -1,0 +1,26 @@
+<!--navbar-->
+<app-navigation-expert></app-navigation-expert>
+<!--content-->
+<div class="content">
+    <form (ngSubmit)="onValid(img)" *ngIf="images" #img="ngForm"  class="justify-content-center p-4" novalidate>
+        
+        <div class="form-group">
+            <label for="images" style="font-size: x-large;">Nom de maladie</label>
+            <select name="imagesMaladiesPlante" class="form-control" id="images" [(ngModel)]="images.maladiePlante" >
+                <!-- <option value="">Selectionne une maladie</option> -->
+                <option *ngFor="let maladiePlante of maladiePlantes" [ngValue]="maladiePlante">
+                    {{maladiePlante.nomMaladie}}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="infosCompl" style="font-size: x-large;">Informations complementaires</label>
+            <textarea [(ngModel)]="images.infosCompl"  name="infosCompl" class="form-control" id="infosCompl" rows="3" placeholder="Entrer les informations complementaires"></textarea>
+        </div>
+    
+        <div class="form-group">
+            <button class="btn btn-secondary" type="submit">Valider</button>
+        </div>
+    </form>
+</div>
