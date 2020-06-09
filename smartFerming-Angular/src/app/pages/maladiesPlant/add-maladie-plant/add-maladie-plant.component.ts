@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MaladiesService } from 'src/app/services/maladies.service';
-import { MaladiesPlant } from 'src/app/models/maladies-plant';
+import { MaladiePlante } from 'src/app/models/maladies-plant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ValidateUploadComponent } from 'src/app/PopUp/validate-upload/validate-upload.component';
 
@@ -12,7 +12,7 @@ import { ValidateUploadComponent } from 'src/app/PopUp/validate-upload/validate-
 })
 export class AddMaladiePlantComponent implements OnInit {
 
-  maladies : MaladiesPlant = {
+  maladies : MaladiePlante = {
     nomMaladie : '',
     symptomes : '',
     causes : '',

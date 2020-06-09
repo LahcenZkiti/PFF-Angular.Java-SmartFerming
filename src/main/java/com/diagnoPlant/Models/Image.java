@@ -7,8 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "image")
 public class Image implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -21,36 +23,37 @@ public class Image implements Serializable{
 	private String infosCompl ;
 	
 	@ManyToOne
-	private MaladiePlante maladiePlante;
+	private MaladiePlante maladiePlantes;
+	
 	/**
 	 * @param image
 	 */
 	public Image() {
 		super();
 		// TODO Auto-generated constructor stub
+		this.etatTraitement =false;
 	}
 	/**
 	 * @param id
 	 * @param image
 	 * @param urlString
 	 */
-	public Image(Long id, String image, String urlString) {
+	public Image(Long id, String image, String urlString, MaladiePlante maladiePlantes) {
 		super();
 		this.id = id;
 		this.image = image;
 		this.urlImage = urlString;
+		this.maladiePlantes = maladiePlantes;
 	}
 	
-	
-	/**
-	 * @param image
-	 * @param urlString
-	 */
-	public Image(String image, String urlImage) {
-		super();
-		this.image = image;
-		this.urlImage = urlImage;
-	}
+//	/**
+//	 * @param image
+//	 * @param urlString
+//	 */
+//	public Image(Long id) {
+//		super();
+//		this.id = id;
+//	}
 	/**
 	 * @return the id
 	 */
@@ -118,15 +121,15 @@ public class Image implements Serializable{
 	 * @return the maladiePlante
 	 */
 	public MaladiePlante getMaladiePlante() {
-		return maladiePlante;
+		return maladiePlantes;
 	}
 	
 	
 	/**
 	 * @param maladiePlante the maladiePlante to set
 	 */
-	public void setMaladiePlante(MaladiePlante maladiePlante) {
-		this.maladiePlante = maladiePlante;
+	public void setMaladiePlante(MaladiePlante maladiePlantes) {
+		this.maladiePlantes = maladiePlantes;
 	}
 
 

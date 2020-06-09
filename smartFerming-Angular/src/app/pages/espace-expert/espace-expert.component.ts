@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImagesService } from 'src/app/services/images.service';
-import { Images } from 'src/app/models/images';
+import { Image } from 'src/app/models/images';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,7 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EspaceExpertComponent implements OnInit {
 
-  images: Images;
+  images: Image;
   constructor(private imagesServices:ImagesService,
               private router:Router,
               private modalService: NgbModal) { }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Images } from '../models/images';
+import { Image } from '../models/images';
 import { Observable } from 'rxjs';
 
 /**
@@ -19,7 +19,7 @@ export class ImagesService {
   /**
    * Images  of images service
    */
-  images : Images;
+  images : Image;
 
   /**
    * Creates an instance of images service.
@@ -31,8 +31,8 @@ export class ImagesService {
    * Finds all
    * @returns all 
    */
-  findAll() : Observable<Images>  {
-    return this.http.get<Images>(this.API_URL + 'images');
+  findAll() : Observable<Image>  {
+    return this.http.get<Image>(this.API_URL + 'images');
   }
 
   /**
@@ -40,17 +40,18 @@ export class ImagesService {
    * @param id 
    * @returns by id 
    */
-  findByID(id: number) : Observable<Images> {
-    return this.http.get<Images>(this.API_URL + 'image/' + id);
+  findByID(id: number) : Observable<Image> {
+    return this.http.get<Image>(this.API_URL + 'images/' + id)
   }
+
 
   /**
    * Deletes by id
    * @param id 
    * @returns by id 
    */
-  deleteById(id: number) : Observable<Images> {
-    return this.http.delete<Images>(this.API_URL + 'image/' + id);
+  deleteById(id: number) : Observable<Image> {
+    return this.http.delete<Image>(this.API_URL + 'images/' + id);
   }
 
   /**
@@ -58,7 +59,18 @@ export class ImagesService {
    * @param image 
    * @returns by id 
    */
-  updateById(image: Images) : Observable<Images> {
-    return this.http.put<Images>(this.API_URL + 'image/' + image.id, image);
+  updateById(image: Image) : Observable<Image> {
+    return this.http.put<Image>(this.API_URL + 'images/' + image.id, image);
   }
+
+
+  /**
+   * Adds resp
+   * @param image 
+   * @returns resp 
+   */
+  addResp(image: Image) : Observable<Image>  {
+    return this.http.put<Image>(this.API_URL + 'donneravis/'+image.id , image);
+  }
+
 }

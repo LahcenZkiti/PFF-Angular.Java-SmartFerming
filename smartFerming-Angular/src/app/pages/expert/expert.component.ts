@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Images } from 'src/app/models/images';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ValidateUploadComponent } from 'src/app/PopUp/validate-upload/validate-upload.component';
 /**

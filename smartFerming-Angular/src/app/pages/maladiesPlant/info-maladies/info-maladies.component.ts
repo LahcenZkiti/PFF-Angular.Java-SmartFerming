@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MaladiesService } from 'src/app/services/maladies.service';
-import { MaladiesPlant } from 'src/app/models/maladies-plant';
+import { MaladiePlante } from 'src/app/models/maladies-plant';
 
 @Component({
   selector: 'app-info-maladies',
@@ -10,7 +10,7 @@ import { MaladiesPlant } from 'src/app/models/maladies-plant';
 })
 export class InfoMaladiesComponent implements OnInit {
 
-  maladies : MaladiesPlant ;
+  maladies : MaladiePlante[] ;
   constructor(private route:ActivatedRoute,
               private router:Router,
               private maladiesService:MaladiesService) { }

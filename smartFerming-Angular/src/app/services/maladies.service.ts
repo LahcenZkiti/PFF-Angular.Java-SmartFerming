@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MaladiesPlant } from '../models/maladies-plant';
+import { MaladiePlante } from '../models/maladies-plant';
 import { Observable } from 'rxjs';
 
 /**
@@ -19,7 +19,7 @@ export class MaladiesService {
   /**
    * Maladies  of maladies service
    */
-  maladies : MaladiesPlant;
+  maladies : MaladiePlante;
 
   /**
    * Creates an instance of maladies service.
@@ -32,16 +32,16 @@ export class MaladiesService {
    * @param maladie 
    * @returns one 
    */
-  addOne(maladie: MaladiesPlant): Observable<MaladiesPlant> {
-    return this.http.post<MaladiesPlant>(this.API_URL + 'addMaladie' , maladie);
+  addOne(maladie: MaladiePlante): Observable<MaladiePlante> {
+    return this.http.post<MaladiePlante>(this.API_URL + 'addMaladie' , maladie);
   }
 
   /**
    * Finds all
    * @returns all 
    */
-  findAll(): Observable<MaladiesPlant> {
-    return this.http.get<MaladiesPlant>(this.API_URL + 'listMaladies');
+  findAll(): Observable<MaladiePlante[]> {
+    return this.http.get<MaladiePlante[]>(this.API_URL + 'listMaladies');
   }
 
   /**
@@ -49,8 +49,8 @@ export class MaladiesService {
    * @param id 
    * @returns by id 
    */
-  findById(id: number): Observable<MaladiesPlant> {
-    return this.http.get<MaladiesPlant>(this.API_URL + 'listMaladies/' + id);
+  findById(id: number): Observable<MaladiePlante[]> {
+    return this.http.get<MaladiePlante[]>(this.API_URL + 'listMaladies/' + id);
   }
 
   /**
@@ -58,8 +58,8 @@ export class MaladiesService {
    * @param id 
    * @returns delete 
    */
-  delete(id: number): Observable<MaladiesPlant> {
-    return this.http.delete<MaladiesPlant>(this.API_URL + 'listMaladies/' + id)
+  delete(id: number): Observable<MaladiePlante> {
+    return this.http.delete<MaladiePlante>(this.API_URL + 'listMaladies/' + id)
   }
 
   /**
@@ -67,7 +67,7 @@ export class MaladiesService {
    * @param maladie 
    * @returns update 
    */
-  update(maladie: MaladiesPlant ): Observable<MaladiesPlant> {
-    return this.http.put<MaladiesPlant>(this.API_URL + 'listMaladies/' + maladie.id, maladie)
+  update(maladie: MaladiePlante ): Observable<MaladiePlante> {
+    return this.http.put<MaladiePlante>(this.API_URL + 'listMaladies/' + maladie.id, maladie)
   }
 }

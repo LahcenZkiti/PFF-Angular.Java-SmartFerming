@@ -11,7 +11,6 @@ import java.util.Optional;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,18 +20,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
 import com.diagnoPlant.Messages.ResponseMessage;
 import com.diagnoPlant.Models.Image;
 import com.diagnoPlant.Repositorys.ImageRepository;
-import com.diagnoPlant.storage.ImageStorageService;
 
 /**
  * This class used to upload image and store it in a folder 
@@ -45,11 +43,9 @@ public class ImageController {
 	@Autowired
 	private ImageRepository imageRepository;
 	
+	
 	@Value("${dir.images}")
 	private String imageDir;
-
-	@Autowired
-	ImageStorageService storageService;
 	
 	
 	/**
@@ -72,7 +68,7 @@ public class ImageController {
 
 	    	if (!(file.isEmpty())) {
 				image.setImage(file.getOriginalFilename());
-				image.setUrlImage("http://localhost:8080/images/"+ file.getOriginalFilename());
+				image.setUrlImage("http://localhost:8080/images/"+ image.getId());
 				
 				file.transferTo(new File(imageDir+ image.getId()));
 				
@@ -90,9 +86,9 @@ public class ImageController {
 	}
 	
 	
-	@RequestMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
+	@RequestMapping(value = "/images/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
-	public byte[] getImages(Long id) throws Exception {
+	public byte[] getImages(@PathVariable("id") Long id) throws Exception {
 		File f = new File(imageDir+ id);
 		
 		return IOUtils.toByteArray(new FileInputStream(f));
@@ -108,39 +104,28 @@ public class ImageController {
 	@GetMapping(value = "/images")
 	public ResponseEntity<List<Image>> getImages(){
 		
-		List<Image> images = storageService.findAll();
+		List<Image> images = imageRepository.findAll();
 		
 		return ResponseEntity.status(HttpStatus.OK).body(images);
 	}
-	
-	/**
-	 * Cette méthode permet récuperer les images dans un dossier
-	 * @param id
-	 * @return
-	 */
-	@GetMapping("/images/{filename:.+}")
-	  public ResponseEntity<Resource> getImage(@PathVariable String filename) {
-	    Resource file = storageService.load(filename);
-	    return ResponseEntity.ok()
-	        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
-	}
-	
+
 	
 	/**
 	 * Cette méthode permet récuperer les images par id
 	 * @param id
 	 * @return
 	 */
-	@GetMapping(value = "/image/{id}")
+	@GetMapping(value = "/images/{id}")
 	public ResponseEntity<Image> getImageById(@PathVariable("id") Long id){
 		Optional<Image> img = imageRepository.findById(id);
 
 		if (img.isPresent()) {
+			System.out.println("objet image = >"+img+" of the id "+ id);
 			return new ResponseEntity<>(img.get(), HttpStatus.OK);
 		}else {
+			System.out.println("Id: " + id + " don't exist");
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		
+		}		
 	}
 	
 	/**
@@ -149,7 +134,7 @@ public class ImageController {
 	 * @param image
 	 * @return
 	 */
-	@PutMapping("/image/{id}")
+	@PutMapping("/images/{id}")
 	public ResponseEntity<Image> updateImage(@PathVariable("id") Long id, @RequestBody Image image) {
 		Optional<Image> img = imageRepository.findById(id);
 		
@@ -167,11 +152,36 @@ public class ImageController {
 	}
 	
 	/**
+	 * Cette méthode permet d'enregistrer les données saisies dans 
+	 * la base de donnée pour chaque image 
+	 * @param m
+	 * @param model
+	 * @param maladiePlante
+	 * @return
+	 */
+	@RequestMapping(value = "/donneravis/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Image> Maladie(@PathVariable("id")Long id,@RequestBody Image m) {
+		Optional<Image> img = imageRepository.findById(id);
+		if(img.isPresent()) {
+			Image _m = img.get();
+			_m.setEtatTraitement(true);
+			_m.setImage(m.getImage());
+			_m.setUrlImage(m.getUrlImage());
+			_m.setInfosCompl(m.getInfosCompl());
+			_m.setMaladiePlante(m.getMaladiePlante());
+			return new ResponseEntity<>(imageRepository.save(_m), HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	
+	/**
 	 * Cette méthode permet supprimer les images par id
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/image/{id}")
+	@DeleteMapping("/images/{id}")
 	public ResponseEntity<HttpStatus> deleteImage(@PathVariable("id") Long id) {
 		try {
 			imageRepository.deleteById(id);

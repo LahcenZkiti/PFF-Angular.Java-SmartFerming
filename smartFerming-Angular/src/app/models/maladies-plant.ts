@@ -1,4 +1,4 @@
-export  class MaladiesPlant {
+export  class MaladiePlante {
     id ?: number;
     nomMaladie : string;
     symptomes : string;

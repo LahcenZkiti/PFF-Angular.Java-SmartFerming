@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MaladiesService } from 'src/app/services/maladies.service';
-import { MaladiesPlant } from 'src/app/models/maladies-plant';
+import { MaladiePlante } from 'src/app/models/maladies-plant';
 import { Router } from '@angular/router';
 
 /**
@@ -16,7 +16,7 @@ export class ListMaladiePlantComponent implements OnInit {
   /**
    * Maladies  of list maladie plant component
    */
-  maladies : MaladiesPlant; 
+  maladies : MaladiePlante[]; 
 
   /**
    * Creates an instance of list maladie plant component.
