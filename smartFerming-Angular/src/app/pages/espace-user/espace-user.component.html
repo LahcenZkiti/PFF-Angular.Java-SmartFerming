@@ -1,0 +1,39 @@
+<!--nav bar-->
+<app-navigation></app-navigation>
+<!-- content-->
+<div class="content">
+    <div class="row row-cols-1 row-cols-md-3 p-4">
+        <div class="col mb-4" *ngFor="let image of images">
+        
+            <div class="card h-100" style="background-color: #d7dde8;">
+                <img src="http://localhost:8080/image/{{image.id}}"
+                  class="card-img-top" alt="">
+                <div class="card-body">
+                    <h2 class="card-title">Recommandation d'expert</h2>
+                    <!-- <p> {{image | json }}</p> -->
+                        
+                    <h3 class="card-title" style="color: cornflowerblue;">Nom de maladie</h3>
+                    <p class="card-text">{{image.maladiePlante.nomMaladie}}</p>
+                    <hr>
+                    <h3 class="card-title" style="color: cornflowerblue;">Symptoms</h3>
+                    <p class="card-text">{{image.maladiePlante.symptomes}}</p>
+                    <hr>
+                    <h3 class="card-title" style="color: cornflowerblue;">Causes</h3>
+                    <p class="card-text">{{image.maladiePlante.causes}}</p>
+                    <hr>
+                    <h3 class="card-title" style="color: cornflowerblue;">Traitement</h3>
+                    <p class="card-text">{{image.maladiePlante.traitement}}</p>
+                    <hr>
+                    <h3 class="card-title" style="color: cornflowerblue;">actionsPreventives</h3>
+                    <p class="card-text">{{image.maladiePlante.actionsPreventives}}</p>
+                    <hr>
+                    <h3 class="card-title" style="color: cornflowerblue;">Informations complementaires</h3>
+                    <p class="card-text">{{image.infosCompl}}</p>
+                    <hr>
+                    <p class="card-text"><small class="text-muted">Last updated 2 mins ago</small></p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -19,7 +19,7 @@
             <input type="text" class="form-control" id="myInput" onkeyup="searchByName()" placeholder="Recherche par noms.." title="Type in a name">
         </div>
         <ul id="myUL" *ngFor="let maladie of maladies">
-            <li><a (click)="getById(maladie.id)">{{maladie.nomMaladie}}</a></li>
+            <li><a (click)="getById(maladie.id)">{{maladie.nomMaladie}}</a></li> 
         </ul>
     </div>
 </div>

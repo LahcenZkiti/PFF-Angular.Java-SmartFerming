@@ -40,8 +40,8 @@ export class MaladiesService {
    * Finds all
    * @returns all 
    */
-  findAll(): Observable<MaladiePlante[]> {
-    return this.http.get<MaladiePlante[]>(this.API_URL + 'listMaladies');
+  findAll(): Observable<MaladiePlante> {
+    return this.http.get<MaladiePlante>(this.API_URL + 'listMaladies');
   }
 
   /**
@@ -49,8 +49,8 @@ export class MaladiesService {
    * @param id 
    * @returns by id 
    */
-  findById(id: number): Observable<MaladiePlante[]> {
-    return this.http.get<MaladiePlante[]>(this.API_URL + 'listMaladies/' + id);
+  findById(id: number): Observable<MaladiePlante> {
+    return this.http.get<MaladiePlante>(this.API_URL + 'listMaladies/' + id);
   }
 
   /**

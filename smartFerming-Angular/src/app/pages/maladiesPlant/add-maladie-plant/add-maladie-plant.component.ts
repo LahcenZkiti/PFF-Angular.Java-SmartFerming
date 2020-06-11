@@ -4,6 +4,7 @@ import { MaladiesService } from 'src/app/services/maladies.service';
 import { MaladiePlante } from 'src/app/models/maladies-plant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ValidateUploadComponent } from 'src/app/PopUp/validate-upload/validate-upload.component';
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-add-maladie-plant',
@@ -28,6 +29,9 @@ export class AddMaladiePlantComponent implements OnInit {
   addMaladie(form: NgForm) {
     this.maladieService.addOne(this.maladies).subscribe(maladie => {
       this.maladies = maladie;
+        error =>{
+          console.log(error);
+        }
       console.log(JSON.stringify(maladie));
       form.reset();
     })

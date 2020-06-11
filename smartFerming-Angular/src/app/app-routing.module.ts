@@ -7,6 +7,7 @@ import { AddMaladiePlantComponent } from './pages/maladiesPlant/add-maladie-plan
 import { ListMaladiePlantComponent } from './pages/maladiesPlant/list-maladie-plant/list-maladie-plant.component';
 import { InfoMaladiesComponent } from './pages/maladiesPlant/info-maladies/info-maladies.component';
 import { EspaceResponseComponent } from './pages/espace-response/espace-response.component';
+import { EspaceUserComponent } from './pages/espace-user/espace-user.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'info/maladie/:id',
     component: InfoMaladiesComponent
+  },
+  {
+    path: 'allresponse',
+    component: EspaceUserComponent
   }
 ];
 

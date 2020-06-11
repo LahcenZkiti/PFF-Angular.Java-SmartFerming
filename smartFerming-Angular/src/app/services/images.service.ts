@@ -28,17 +28,25 @@ export class ImagesService {
   constructor(private http:HttpClient) { }
 
   /**
-   * Finds all
+   * Finds all the images
    * @returns all 
    */
   findAll() : Observable<Image>  {
     return this.http.get<Image>(this.API_URL + 'images');
   }
 
+  /**
+   * Finds all the images that are not trait 
+   * @returns all non trit 
+   */
   findAllNonTrit() : Observable<Image> {
     return this.http.get<Image>(this.API_URL + 'images/nontraiter');
   }
 
+  /**
+   * Finds all the images that are trait
+   * @returns all trit 
+   */
   findAllTrit() : Observable<Image> {
     return this.http.get<Image>(this.API_URL + 'images/traiter');
   }
@@ -73,7 +81,7 @@ export class ImagesService {
 
 
   /**
-   * Adds resp
+   * Add response to user
    * @param image 
    * @returns resp 
    */

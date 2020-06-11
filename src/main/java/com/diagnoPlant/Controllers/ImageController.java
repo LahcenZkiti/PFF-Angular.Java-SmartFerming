@@ -86,7 +86,7 @@ public class ImageController {
 	}
 	
 	
-	@RequestMapping(value = "/images/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
+	@RequestMapping(value = "/image/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
 	public byte[] getImages(@PathVariable("id") Long id) throws Exception {
 		File f = new File(imageDir+ id);
@@ -194,7 +194,7 @@ public class ImageController {
 	
 	/**
 	 * Cette méthode permet supprimer tout les images
-	 * @param id
+	 * @param 
 	 * @return
 	 */
 	@DeleteMapping("/images")
@@ -212,7 +212,7 @@ public class ImageController {
 	
 	/**
 	 * Cette méthode permet d'afficher les images non traiter
-	 * @param id
+	 * @param 
 	 * @return
 	 */	
 	@GetMapping("/images/nontraiter")
@@ -225,7 +225,7 @@ public class ImageController {
 	
 	/**
 	 * Cette méthode permet d'afficher les images traiter
-	 * @param id
+	 * @param 
 	 * @return
 	 */	
 	@GetMapping("/images/traiter")

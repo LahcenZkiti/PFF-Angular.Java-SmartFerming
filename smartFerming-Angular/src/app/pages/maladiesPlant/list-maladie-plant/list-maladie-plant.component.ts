@@ -16,7 +16,7 @@ export class ListMaladiePlantComponent implements OnInit {
   /**
    * Maladies  of list maladie plant component
    */
-  maladies : MaladiePlante[]; 
+  maladies : MaladiePlante; 
 
   /**
    * Creates an instance of list maladie plant component.
@@ -43,16 +43,16 @@ export class ListMaladiePlantComponent implements OnInit {
     })
   }
 
-  /**
-   * Gets maladie by name
-   * @param id 
-   */
-  getMaladieByName(id: number) {
-    this.maladieService.findById(id).subscribe( maladie => {
-      this.maladies = maladie;
-      console.log(JSON.stringify(maladie));
-    })
-  }
+  // /**
+  //  * Gets maladie by name
+  //  * @param id 
+  //  */
+  // getMaladieByName(id: number) {
+  //   this.maladieService.findById(id).subscribe( maladie => {
+  //     this.maladies = maladie;
+  //     console.log(JSON.stringify(maladie));
+  //   })
+  // }
 
   /**
    * Adds list maladie plant component
@@ -66,8 +66,9 @@ export class ListMaladiePlantComponent implements OnInit {
    * Gets by id
    * @param id 
    */
-  getById(id: number) {
-    this.router.navigate(['/info/maladie',id]);
+  getById(idMld: number) {
+    this.router.navigate(['/info/maladie',idMld]);
+    console.log("id is => ", idMld)
   }
 
   /**
