@@ -16,7 +16,7 @@ export class EspaceResponseComponent implements OnInit {
 
   images : Image = new Image();
 
-  maladiePlantes: Array<MaladiePlante> = [];
+  maladiePlantes: MaladiePlante ;
 
   selectedMaladie: MaladiePlante = new MaladiePlante();
 

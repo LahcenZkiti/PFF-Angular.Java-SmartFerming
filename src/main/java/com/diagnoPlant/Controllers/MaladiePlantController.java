@@ -117,5 +117,22 @@ public class MaladiePlantController {
 	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
 	    }
 	}
+	
+	
+	/**
+	 * Cette méthode permet supprimer tout les maladies
+	 * @param 
+	 * @return
+	 */
+	@DeleteMapping("/listMaladies")
+	  public ResponseEntity<HttpStatus> deleteAllMaladies() {
+	    try {
+	      mldRepo.deleteAll();
+	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+	    }
+
+	  }
 
 }

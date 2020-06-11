@@ -47,8 +47,8 @@ export class ImagesService {
    * Finds all the images that are trait
    * @returns all trit 
    */
-  findAllTrit() : Observable<Image[]> {
-    return this.http.get<Image[]>(this.API_URL + 'images/traiter');
+  findAllTrit() : Observable<Image> {
+    return this.http.get<Image>(this.API_URL + 'images/traiter');
   }
 
   /**

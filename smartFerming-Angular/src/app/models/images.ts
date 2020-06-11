@@ -6,6 +6,6 @@ export class Image {
     etatTraitement: boolean;
     urlImage: string;
     infosCompl: string;
-    maladiePlante ?: MaladiePlante; 
+    maladiePlante : MaladiePlante;  
 
 }

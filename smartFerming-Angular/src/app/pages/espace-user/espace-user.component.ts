@@ -10,7 +10,7 @@ import { MaladiePlante } from 'src/app/models/maladies-plant';
 })
 export class EspaceUserComponent implements OnInit {
 
-  images : Image []
+  images : Image 
   maladiePlantes : MaladiePlante[]
   constructor(private imagesService:ImagesService) { }
 
