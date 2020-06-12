@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.project.DiagnoPlant.DiagnoPlantApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.614 s <<< FAILURE! - in com.project.DiagnoPlant.DiagnoPlantApplicationTests
+com.project.DiagnoPlant.DiagnoPlantApplicationTests  Time elapsed: 0.612 s  <<< ERROR!
+java.lang.IllegalStateException: Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test
+

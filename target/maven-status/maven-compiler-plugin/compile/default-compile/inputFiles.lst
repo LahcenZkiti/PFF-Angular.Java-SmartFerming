@@ -1,0 +1,8 @@
+/home/lahcen/git/PFF-Angular.Java-SmartFerming/src/main/java/com/diagnoPlant/DiagnoPlantApplication.java
+/home/lahcen/git/PFF-Angular.Java-SmartFerming/src/main/java/com/diagnoPlant/Models/Image.java
+/home/lahcen/git/PFF-Angular.Java-SmartFerming/src/main/java/com/diagnoPlant/Models/MaladiePlante.java
+/home/lahcen/git/PFF-Angular.Java-SmartFerming/src/main/java/com/diagnoPlant/Controllers/MaladiePlantController.java
+/home/lahcen/git/PFF-Angular.Java-SmartFerming/src/main/java/com/diagnoPlant/Repositorys/MaladiePlantRepository.java
+/home/lahcen/git/PFF-Angular.Java-SmartFerming/src/main/java/com/diagnoPlant/Controllers/ImageController.java
+/home/lahcen/git/PFF-Angular.Java-SmartFerming/src/main/java/com/diagnoPlant/Repositorys/ImageRepository.java
+/home/lahcen/git/PFF-Angular.Java-SmartFerming/src/main/java/com/diagnoPlant/Messages/ResponseMessage.java
