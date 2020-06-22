@@ -21,6 +21,8 @@ import { ListMaladiePlantComponent } from './pages/maladiesPlant/list-maladie-pl
 import { InfoMaladiesComponent } from './pages/maladiesPlant/info-maladies/info-maladies.component';
 import { TraiterImgageComponent } from './PopUp/traiter-imgage/traiter-imgage.component';
 import { EspaceUserComponent } from './pages/espace-user/espace-user.component';
+import { LoginComponent } from './pages/autentification/login/login.component';
+import { RegisterComponent } from './pages/autentification/register/register.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { EspaceUserComponent } from './pages/espace-user/espace-user.component';
     ListMaladiePlantComponent,
     InfoMaladiesComponent,
     TraiterImgageComponent,
-    EspaceUserComponent
+    EspaceUserComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
