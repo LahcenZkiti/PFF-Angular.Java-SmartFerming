@@ -8,6 +8,8 @@ import { ListMaladiePlantComponent } from './pages/maladiesPlant/list-maladie-pl
 import { InfoMaladiesComponent } from './pages/maladiesPlant/info-maladies/info-maladies.component';
 import { EspaceResponseComponent } from './pages/espace-response/espace-response.component';
 import { EspaceUserComponent } from './pages/espace-user/espace-user.component';
+import {LoginComponent} from "./pages/autentification/login/login.component";
+import { RegisterComponent } from './pages/autentification/register/register.component';
 
 
 const routes: Routes = [
@@ -47,6 +49,14 @@ const routes: Routes = [
   {
     path: 'allresponse',
     component: EspaceUserComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path:'register',
+    component: RegisterComponent
   }
 ];
 

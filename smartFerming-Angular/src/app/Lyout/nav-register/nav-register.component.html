@@ -8,12 +8,15 @@
                 <a class="btn btn-success" [routerLink]="['/detect-auto']" routerLinkActive="router-link-active" >Home</a>
             </li>
             <li class="nav-item active">
-                <a class="btn btn-success" [routerLink]="['/expert']" routerLinkActive="router-link-active" >Consulter l'expert</a>
+                <a class="btn btn-success" [routerLink]="['/']" routerLinkActive="router-link-active" >About</a>
             </li>
             <li class="nav-item active">
-                <a class="btn btn-success" [routerLink]="['/allresponse']" routerLinkActive="router-link-active" >avis expert</a>
+                <a class="btn btn-success" [routerLink]="['/']" routerLinkActive="router-link-active" >Blog</a>
+            </li>
+            <li class="nav-item active">
+                <a class="btn btn-success" [routerLink]="['/']" routerLinkActive="router-link-active" >Contact</a>
             </li>
         </ul>
-        <button class="btn btn-success my-2 my-sm-0" (click)="onLogout()">LogOut <i class="fas fa-sign-out-alt"></i></button>
+        <button class="btn btn-success my-2 my-sm-0" (click)="onRegister()">Register <i class="fa fa-user-plus" aria-hidden="true"></i></button>
     </div>
 </nav>

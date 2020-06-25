@@ -12,4 +12,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onLogin(value: any) {
+    console.log("data send is =>", JSON.stringify(value))
+  }
 }

@@ -1,1 +1,19 @@
-<p>login works!</p>
+<app-nav-register></app-nav-register>
+<div class="content">
+  <form class="p-5" #form="ngForm" (ngSubmit)="onlogin(form.value)">
+    <div class="form-group">
+      <label class="control-label">User name</label>
+      <input type="text" name="username" ngModel class="form-control" aria-describedby="User name">
+    </div>
+    <div class="form-group">
+      <label class="control-label">Password</label>
+      <input type="password" name="password" ngModel class="form-control">
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="Check">
+      <label class="form-check-label" for="Check">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+

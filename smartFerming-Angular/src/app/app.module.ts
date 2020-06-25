@@ -23,6 +23,9 @@ import { TraiterImgageComponent } from './PopUp/traiter-imgage/traiter-imgage.co
 import { EspaceUserComponent } from './pages/espace-user/espace-user.component';
 import { LoginComponent } from './pages/autentification/login/login.component';
 import { RegisterComponent } from './pages/autentification/register/register.component';
+import { FooterComponent } from './Lyout/footer/footer.component';
+import { NavRegisterComponent } from './Lyout/nav-register/nav-register.component';
+import { NavLoginComponent } from './Lyout/nav-login/nav-login.component'
 
 
 @NgModule({
@@ -41,7 +44,10 @@ import { RegisterComponent } from './pages/autentification/register/register.com
     TraiterImgageComponent,
     EspaceUserComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FooterComponent,
+    NavRegisterComponent,
+    NavLoginComponent
   ],
   imports: [
     BrowserModule,
