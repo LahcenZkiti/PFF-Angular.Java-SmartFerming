@@ -10,6 +10,9 @@
 
     <div class="row py-4">
         <div class="col-lg-6 mx-auto">
+            <div class="mb-3 progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+            </div>
             <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
                 <input id="upload" type="file" name="file" class="form-control border-0" (change)="onFileSelected($event)" value="0">
                 <label id="upload-label" for="upload" class="font-weight-light">choisissez l'image</label>

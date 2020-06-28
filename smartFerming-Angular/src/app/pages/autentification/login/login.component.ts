@@ -20,14 +20,17 @@ export class LoginComponent implements OnInit {
     this.authService.login(dataForm.username, dataForm.password);
     if(this.authService.isAuthenticated){
       if(this.authService.userAuthenticated){
-        if(this.authService.userAuthenticated.roles.indexOf('EXPERT') > -1){
+        if(this.authService.userAuthenticated.roles.indexOf('EXPERT') == 0){
           this.router.navigateByUrl('/espace-expert');
+          this.authService.saveAuthenicatedUser();
           return true ;
+        }else{
+          this.router.navigateByUrl('');
+          this.authService.saveAuthenicatedUser();
+          return false ;
         }
-        return false;
       }
-      this.router.navigateByUrl('');
-      return false;
     }
   }
+
 }

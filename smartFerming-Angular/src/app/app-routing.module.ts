@@ -14,13 +14,13 @@ import { RegisterComponent } from './pages/autentification/register/register.com
 
 const routes: Routes = [
   {
-    path: '',
-    component: DetectionAutoComponent
-  }
-  ,
-  {
     path:'detect-auto',
     component: DetectionAutoComponent
+  },
+  {
+    path: '',
+    redirectTo:'detect-auto', 
+    pathMatch:'full'
   },
   {
     path: 'expert',
