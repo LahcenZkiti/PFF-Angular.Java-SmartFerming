@@ -54,7 +54,7 @@ export class ExpertComponent implements OnInit {
       JSON.stringify(res);
       const modalRef = this.modalService.open(ValidateUploadComponent);
       if(this.selectedFile.name.length > 0){
-        modalRef.componentInstance.msg = "Votre image a bien été enregistrée! \nNous vous enverrons une réponse d'expert \nNous vous remercions de votre confiance ...";
+        modalRef.componentInstance.msg = "Votre image a bien été enregistrée! \n Nous vous enverrons une réponse d'expert \n Nous vous remercions de votre confiance ...";
           return true
       }else{
         modalRef.componentInstance.msg = 'veuillez sélectionner une image !';

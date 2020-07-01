@@ -28,7 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
-import com.diagnoPlant.Messages.ResponseMessage;
+import com.diagnoPlant.payload.response.ResponseMessage;
 import com.diagnoPlant.Models.Image;
 import com.diagnoPlant.Repositorys.ImageRepository;
 

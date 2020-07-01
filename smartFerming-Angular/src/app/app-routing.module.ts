@@ -14,13 +14,16 @@ import { RegisterComponent } from './pages/autentification/register/register.com
 
 const routes: Routes = [
   {
-    path:'detect-auto',
-    component: DetectionAutoComponent
+    path: 'login',
+    component: LoginComponent
   },
   {
-    path: '',
-    redirectTo:'detect-auto', 
-    pathMatch:'full'
+    path:'register',
+    component: RegisterComponent
+  },
+  {
+    path:'detect-auto',
+    component: DetectionAutoComponent
   },
   {
     path: 'expert',
@@ -51,12 +54,9 @@ const routes: Routes = [
     component: EspaceUserComponent
   },
   {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path:'register',
-    component: RegisterComponent
+    path: '',
+    redirectTo:'expert', 
+    pathMatch:'full'
   }
 ];
 

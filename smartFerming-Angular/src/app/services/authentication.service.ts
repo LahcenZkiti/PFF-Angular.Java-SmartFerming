@@ -1,57 +1,35 @@
 import { Injectable } from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+const AUTH_API = 'http://localhost:8080/api/auth/';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private users = [
-    {username:'admin', password:'1234', roles:['ADMIN', 'USER', 'EXPERT']},
-    {username:'expert', password:'1234', roles:['EXPERT']},
-    {username:'user', password:'1234', roles:['USER']}
-  ];
 
-  public isAuthenticated: boolean
-  public userAuthenticated;
-  public token;
+  constructor(private http:HttpClient) { }
 
-  constructor() { }
-
-  public login(username:string, password:string){
-    let user;
-    this.users.forEach(u => {
-      if(u.username == username && u.password == password){
-        user = u;
-        this.token = {username:u.username, roles:u.roles};
-      }
-    });
-
-    if(user){
-      this.isAuthenticated = true;
-      this.userAuthenticated = user;
-    }
-    else{
-      this.isAuthenticated = false;
-      this.userAuthenticated = undefined;
-    }
+  login(credentials): Observable<any> {
+    return this.http.post(AUTH_API + 'signin', {
+      username: credentials.username,
+      password: credentials.password
+    }, httpOptions);
   }
 
-  public saveAuthenicatedUser(){
-    if(this.userAuthenticated){
-      localStorage.setItem('authToken',btoa(JSON.stringify(this.token)));
-    }
+  register(user):Observable<any> {
+    return this.http.post(AUTH_API + 'signup', {
+      firstname:user.firstname,
+      lastname:user.lastname,
+      email: user.email,
+      username: user.username,
+      password: user.password
+    }, httpOptions);
   }
-
-  public loadAutenticatedUserFromLocalStorage() {
-    let t = localStorage.getItem('authToken');
-    if(t){
-      let user = JSON.parse(atob(t));
-
-      this.userAuthenticated = {username:user.username, roles: user.roles};
-
-      this.isAuthenticated = true;
-      this.token = t ;
-    }
-  }
-
 
 }
