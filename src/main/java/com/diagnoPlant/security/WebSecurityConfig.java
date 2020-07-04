@@ -53,11 +53,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder.authenticationProvider(getAgricultureAuthenticationProvider());
     }
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+//    @Bean
+//    @Override
+//    public AuthenticationManager authenticationManagerBean() throws Exception {
+//        return super.authenticationManagerBean();
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -71,6 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/img/**").permitAll()
+                .antMatchers("/api/mld/**").permitAll()
                 .antMatchers("/agriculturs/**").permitAll()
                 .antMatchers("/experts/**").permitAll()
                 .antMatchers("/**").permitAll()
@@ -81,14 +82,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public AuthenticationProvider getAgricultureAuthenticationProvider() {
+    public AgricultureAuthenticationProvider getAgricultureAuthenticationProvider() {
         AgricultureAuthenticationProvider dao = new AgricultureAuthenticationProvider();
         dao.setUserDetailsService(agricultureDetailsService);
         dao.setPasswordEncoder(passwordEncoder());
         return dao;
     }
     @Bean
-    public AuthenticationProvider getExpertAuthenticationProvider() {
+    public ExpertAuthenticationProvider getExpertAuthenticationProvider() {
         ExpertAuthenticationProvider dao = new ExpertAuthenticationProvider();
         dao.setUserDetailsService(expertDetailsService);
         dao.setPasswordEncoder(passwordEncoder());
@@ -96,7 +97,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public AuthenticationProvider getAdminAuthenticationProvider() {
+    public AdminAuthenticationProvider getAdminAuthenticationProvider() {
         AdminAuthenticationProvider dao = new AdminAuthenticationProvider();
         dao.setUserDetailsService(adminDetailsService);
         dao.setPasswordEncoder(passwordEncoder());

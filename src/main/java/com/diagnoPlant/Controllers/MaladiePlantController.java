@@ -14,7 +14,7 @@ import com.diagnoPlant.Repositorys.MaladiePlantRepository;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/api/img")
+@RequestMapping("/api/mld")
 public class MaladiePlantController {
 	@Autowired
 	private MaladiePlantRepository mldRepo;
@@ -48,7 +48,6 @@ public class MaladiePlantController {
 	 * @return
 	 */
 	@GetMapping("/listMaladies")
-	@PreAuthorize("hasRole('EXPERT') or hasRole('ADMIN')")
 	public ResponseEntity<List<MaladiePlante>> getAllMaladies() {
 		
 			List<MaladiePlante> maladies = mldRepo.findAll();
@@ -64,7 +63,6 @@ public class MaladiePlantController {
 	 * @return
 	 */
 	@GetMapping("/listMaladies/{id}")
-	@PreAuthorize("hasRole('EXPERT') or hasRole('ADMIN')")
 	public ResponseEntity<MaladiePlante> getMaladieById(@PathVariable("id") Long id) {
 		Optional<MaladiePlante> mldlData = mldRepo.findById(id);
 
@@ -106,7 +104,6 @@ public class MaladiePlantController {
 	 * @return
 	 */
 	@DeleteMapping("/listMaladies/{id}")
-	@PreAuthorize("hasRole('EXPERT') or hasRole('ADMIN')")
 	public ResponseEntity<HttpStatus> deleteMaladie(@PathVariable("id") Long id) {
 	    try {
 	      mldRepo.deleteById(id);
@@ -123,7 +120,6 @@ public class MaladiePlantController {
 	 * @return
 	 */
 	@DeleteMapping("/listMaladies")
-	@PreAuthorize("hasRole('EXPERT') or hasRole('ADMIN')")
 	  public ResponseEntity<HttpStatus> deleteAllMaladies() {
 	    try {
 	      mldRepo.deleteAll();

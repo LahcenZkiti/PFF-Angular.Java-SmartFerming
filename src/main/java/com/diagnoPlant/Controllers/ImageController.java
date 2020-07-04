@@ -12,7 +12,6 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -157,7 +156,6 @@ public class ImageController {
 	 * Cette méthode permet d'enregistrer les données saisies dans 
 	 * la base de donnée pour chaque image 
 	 * @param m
-	 * @param model
 	 * @param maladiePlante
 	 * @return
 	 */
@@ -184,7 +182,6 @@ public class ImageController {
 	 * @return
 	 */
 	@DeleteMapping("/images/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<HttpStatus> deleteImage(@PathVariable("id") Long id) {
 		try {
 			imageRepository.deleteById(id);
@@ -201,7 +198,6 @@ public class ImageController {
 	 * @return
 	 */
 	@DeleteMapping("/images")
-	@PreAuthorize("hasRole('ADMIN')")
 	  public ResponseEntity<HttpStatus> deleteAllImages() {
 	    try {
 	      imageRepository.deleteAll();
@@ -220,7 +216,6 @@ public class ImageController {
 	 * @return
 	 */	
 	@GetMapping("/images/nontraiter")
-	@PreAuthorize("hasRole('EXPERT') or hasRole('ADMIN')")
 	public ResponseEntity<List<Image>> getImgNonTrit(){
 		List<Image> imagesNoTr = imageRepository.getImageNonTrit();
 		
@@ -234,7 +229,6 @@ public class ImageController {
 	 * @return
 	 */	
 	@GetMapping("/images/traiter")
-	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<List<Image>> getImgTrit(){
 		List<Image> imagesTr = imageRepository.getImageTrit();
 		
