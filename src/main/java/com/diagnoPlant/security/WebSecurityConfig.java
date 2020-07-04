@@ -1,9 +1,15 @@
 package com.diagnoPlant.security;
 
+import com.diagnoPlant.security.authProviders.AdminAuthenticationProvider;
+import com.diagnoPlant.security.authProviders.AgricultureAuthenticationProvider;
+import com.diagnoPlant.security.authProviders.ExpertAuthenticationProvider;
+import com.diagnoPlant.services.AdminDetailsServiceImpl;
+import com.diagnoPlant.services.ExpertDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,17 +22,21 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.diagnoPlant.security.jwt.AuthEntryPointJwt;
 import com.diagnoPlant.security.jwt.AuthTokenFilter;
-import com.diagnoPlant.services.UserDetailsServiceImpl;
+import com.diagnoPlant.services.AgricultureDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-        // securedEnabled = true,
-        // jsr250Enabled = true,
+         securedEnabled = true,
+         jsr250Enabled = true,
         prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    AdminDetailsServiceImpl adminDetailsService;
+    @Autowired
+    ExpertDetailsServiceImpl expertDetailsService;
+    @Autowired
+    AgricultureDetailsServiceImpl agricultureDetailsService;
 
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
@@ -38,7 +48,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        authenticationManagerBuilder.authenticationProvider(getAdminAuthenticationProvider());
+        authenticationManagerBuilder.authenticationProvider(getExpertAuthenticationProvider());
+        authenticationManagerBuilder.authenticationProvider(getAgricultureAuthenticationProvider());
     }
 
     @Bean
@@ -58,9 +70,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/test/**").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers("/api/img/**").permitAll()
+                .antMatchers("/agriculturs/**").permitAll()
+                .antMatchers("/experts/**").permitAll()
+                .antMatchers("/**").permitAll()
+                .anyRequest()
+                .authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
+
+    @Bean
+    public AuthenticationProvider getAgricultureAuthenticationProvider() {
+        AgricultureAuthenticationProvider dao = new AgricultureAuthenticationProvider();
+        dao.setUserDetailsService(agricultureDetailsService);
+        dao.setPasswordEncoder(passwordEncoder());
+        return dao;
+    }
+    @Bean
+    public AuthenticationProvider getExpertAuthenticationProvider() {
+        ExpertAuthenticationProvider dao = new ExpertAuthenticationProvider();
+        dao.setUserDetailsService(expertDetailsService);
+        dao.setPasswordEncoder(passwordEncoder());
+        return dao;
+    }
+
+    @Bean
+    public AuthenticationProvider getAdminAuthenticationProvider() {
+        AdminAuthenticationProvider dao = new AdminAuthenticationProvider();
+        dao.setUserDetailsService(adminDetailsService);
+        dao.setPasswordEncoder(passwordEncoder());
+        return dao;
     }
 }

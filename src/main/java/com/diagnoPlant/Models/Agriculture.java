@@ -1,65 +1,66 @@
 package com.diagnoPlant.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
+/**
+ *  classe "Agriculture"
+ * @author ZkitiDev
+ *
+ */
 @Entity
-@Table(	name = "users",
+@Table(	name = "agricultures",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
-public class User {
+public class Agriculture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank
     @Size(max = 20)
-    private String username;
-
     @NotBlank
-    @Size(max = 50)
+    private String firstname;
+    @Size(max = 20)
+    @NotBlank
+    private String lastname;
+    @Size(max = 100)
+    @NotBlank
     @Email
     private String email;
-
+    @Size(max = 50)
     @NotBlank
-    @Size(max = 120)
+    private String username;
+    @Size(max = 50)
+    @NotBlank
+    @JsonIgnore
     private String password;
-
-    @NotBlank
-    @Size(max=20)
-    private String firstname;
-
-    @NotBlank
-    @Size(max=20)
-    private String lastname;
-
+    @NotNull
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(	name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    public Agriculture(Long id, @Size(max = 20) @NotBlank String firstname, @Size(max = 20) @NotBlank String lastname,
+                       @Size(max = 100) @NotBlank @Email String email, @Size(max = 50) @NotBlank String username,
+                       @Size(max = 50) @NotBlank String password, @NotNull Set<Role> roles) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
 
-
-    public User() {
+    public Agriculture() {
         super();
     }
-
-    public User(String username, String email, String password, String firstname, String lastname) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.firstname=firstname;
-        this.lastname= lastname;
-    }
-
     public Long getId() {
         return id;
     }

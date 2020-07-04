@@ -1,6 +1,11 @@
 package com.diagnoPlant.Models;
 import javax.persistence.*;
 
+/**
+ *  classe "Role"
+ * @author ZkitiDev
+ *
+ */
 @Entity
 @Table(name = "roles")
 public class Role {

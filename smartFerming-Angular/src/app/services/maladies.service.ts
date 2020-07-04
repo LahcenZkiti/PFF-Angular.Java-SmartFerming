@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { MaladiePlante } from '../models/maladies-plant';
 import { Observable } from 'rxjs';
 
+const API_URL = 'http://localhost:8080/api/img/';
+
+
 /**
  * Injectable
  */
@@ -11,10 +14,6 @@ import { Observable } from 'rxjs';
 })
 export class MaladiesService {
 
-  /**
-   * Api url of maladies service
-   */
-  API_URL = 'http://localhost:8080/';
 
   /**
    * Maladies  of maladies service
@@ -33,7 +32,7 @@ export class MaladiesService {
    * @returns one 
    */
   addOne(maladie: MaladiePlante): Observable<MaladiePlante> {
-    return this.http.post<MaladiePlante>(this.API_URL + 'addMaladie' , maladie);
+    return this.http.post<MaladiePlante>(API_URL + 'addMaladie' , maladie);
   }
 
   /**
@@ -41,7 +40,7 @@ export class MaladiesService {
    * @returns all 
    */
   findAll(): Observable<MaladiePlante> {
-    return this.http.get<MaladiePlante>(this.API_URL + 'listMaladies');
+    return this.http.get<MaladiePlante>(API_URL + 'listMaladies');
   }
 
   /**
@@ -50,7 +49,7 @@ export class MaladiesService {
    * @returns by id 
    */
   findById(id: number): Observable<MaladiePlante> {
-    return this.http.get<MaladiePlante>(this.API_URL + 'listMaladies/' + id);
+    return this.http.get<MaladiePlante>(API_URL + 'listMaladies/' + id);
   }
 
   /**
@@ -59,7 +58,7 @@ export class MaladiesService {
    * @returns delete 
    */
   delete(id: number): Observable<MaladiePlante> {
-    return this.http.delete<MaladiePlante>(this.API_URL + 'listMaladies/' + id)
+    return this.http.delete<MaladiePlante>(API_URL + 'listMaladies/' + id)
   }
 
   /**
@@ -68,6 +67,6 @@ export class MaladiesService {
    * @returns update 
    */
   update(maladie: MaladiePlante ): Observable<MaladiePlante> {
-    return this.http.put<MaladiePlante>(this.API_URL + 'listMaladies/' + maladie.id, maladie)
+    return this.http.put<MaladiePlante>(API_URL + 'listMaladies/' + maladie.id, maladie)
   }
 }

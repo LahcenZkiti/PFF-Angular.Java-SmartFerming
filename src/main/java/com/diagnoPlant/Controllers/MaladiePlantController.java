@@ -6,20 +6,15 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import com.diagnoPlant.Models.MaladiePlante;
 import com.diagnoPlant.Repositorys.MaladiePlantRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RequestMapping("/api/img")
 public class MaladiePlantController {
 	@Autowired
 	private MaladiePlantRepository mldRepo;
@@ -53,6 +48,7 @@ public class MaladiePlantController {
 	 * @return
 	 */
 	@GetMapping("/listMaladies")
+	@PreAuthorize("hasRole('EXPERT') or hasRole('ADMIN')")
 	public ResponseEntity<List<MaladiePlante>> getAllMaladies() {
 		
 			List<MaladiePlante> maladies = mldRepo.findAll();
@@ -68,6 +64,7 @@ public class MaladiePlantController {
 	 * @return
 	 */
 	@GetMapping("/listMaladies/{id}")
+	@PreAuthorize("hasRole('EXPERT') or hasRole('ADMIN')")
 	public ResponseEntity<MaladiePlante> getMaladieById(@PathVariable("id") Long id) {
 		Optional<MaladiePlante> mldlData = mldRepo.findById(id);
 
@@ -109,6 +106,7 @@ public class MaladiePlantController {
 	 * @return
 	 */
 	@DeleteMapping("/listMaladies/{id}")
+	@PreAuthorize("hasRole('EXPERT') or hasRole('ADMIN')")
 	public ResponseEntity<HttpStatus> deleteMaladie(@PathVariable("id") Long id) {
 	    try {
 	      mldRepo.deleteById(id);
@@ -125,6 +123,7 @@ public class MaladiePlantController {
 	 * @return
 	 */
 	@DeleteMapping("/listMaladies")
+	@PreAuthorize("hasRole('EXPERT') or hasRole('ADMIN')")
 	  public ResponseEntity<HttpStatus> deleteAllMaladies() {
 	    try {
 	      mldRepo.deleteAll();

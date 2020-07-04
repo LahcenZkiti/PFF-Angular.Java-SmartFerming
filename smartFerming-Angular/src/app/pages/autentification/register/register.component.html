@@ -43,7 +43,7 @@
 
       <div class="form-group">
         <label class="control-label">User name</label>
-        <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3" maxlength="20" #username="ngModel" aria-describedby="user name">
+        <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3" maxlength="20" #username="ngModel" aria-describedby="agriculture name">
         <div class="alert-danger" *ngIf="f.submitted && username.invalid">
           <div *ngIf="username.errors.required">Username is required</div>
           <div *ngIf="username.errors.minlength">
@@ -72,10 +72,10 @@
       </div>
 
     </form>
-    
+
     <div class="alert alert-success" *ngIf="isSuccessful">
       Your registration is successful!
     </div>
 
   </div>
-  
+

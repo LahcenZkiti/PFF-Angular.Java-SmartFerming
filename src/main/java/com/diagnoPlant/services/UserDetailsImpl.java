@@ -1,6 +1,8 @@
 package com.diagnoPlant.services;
 
-import com.diagnoPlant.Models.User;
+import com.diagnoPlant.Models.Admin;
+import com.diagnoPlant.Models.Agriculture;
+import com.diagnoPlant.Models.Expert;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,21 +16,27 @@ import java.util.stream.Collectors;
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 
+    public static final String AGRICULTURE =  "AGRICULTURE";
+    public static final String EXPERT =  "EXPERT";
+    public static final String ADMIN =  "ADMIN";
+
     private Long id;
     private String username;
     private String email;
     @JsonIgnore
     private String password;
+    private String userType;
     private Collection<? extends GrantedAuthority> authorities;
-    public UserDetailsImpl(Long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities){
+    public UserDetailsImpl(Long id, String username, String email, String password, String userType, Collection<? extends GrantedAuthority> authorities){
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.userType = userType;
         this.authorities = authorities;
     }
 
-    public static UserDetailsImpl build(User user){
+    public static UserDetailsImpl build(Admin user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
@@ -38,8 +46,40 @@ public class UserDetailsImpl implements UserDetails {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
+                ADMIN,
                 authorities);
     }
+
+    public static UserDetailsImpl build(Agriculture agriculture){
+        List<GrantedAuthority> authorities = agriculture.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+                .collect(Collectors.toList());
+
+        return new UserDetailsImpl(
+                agriculture.getId(),
+                agriculture.getUsername(),
+                agriculture.getEmail(),
+                agriculture.getPassword(),
+                AGRICULTURE,
+                authorities);
+    }
+
+    public static UserDetailsImpl build(Expert expert){
+        List<GrantedAuthority> authorities = expert.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+                .collect(Collectors.toList());
+
+        return new UserDetailsImpl(
+                expert.getId(),
+                expert.getUsername(),
+                expert.getEmail(),
+                expert.getPassword(),
+                EXPERT,
+                authorities);
+    }
+
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -52,6 +92,14 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     @Override
