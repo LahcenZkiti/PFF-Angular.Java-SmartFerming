@@ -101,8 +101,6 @@ public class AuthController {
     public ResponseEntity<?> authenticate(@Valid @RequestBody LoginRequest loginRequest, DaoAuthenticationProvider daoAuthenticationProvider) {
 
         try {
-
-
             Authentication authentication = daoAuthenticationProvider.authenticate(
                     new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
             System.out.println("====================== after authenticationmanager : " + loginRequest.getEmail());
@@ -126,8 +124,6 @@ public class AuthController {
                     .badRequest()
                     .body(new ResponseMessage("Bad Credentials"));
         }
-
-
     }
 
     /**
@@ -241,7 +237,7 @@ public class AuthController {
         user.setPassword(encoder.encode(signUpRequest.getPassword()));
 
         Set<Role> roles = new HashSet<>();
-        Role expertRole = roleRepository.findByName(ERole.ROLE_EXPERT)
+        Role expertRole = roleRepository.findByName(ERole.ROLE_AGRICULTURE)
                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 
         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
@@ -257,7 +253,6 @@ public class AuthController {
 
     @GetMapping("/user")
     public ResponseEntity<?> getAuthenticatedUser(){
-
 
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -277,7 +272,6 @@ public class AuthController {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponseMessage("bad credentials"));
         }
-
 
     }
 }

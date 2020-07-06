@@ -16,7 +16,8 @@ import java.util.Set;
  * @author ZkitiDev
  *
  */
-@Entity@Table(	name = "admins",
+@Entity
+@Table(	name = "admins",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
@@ -39,7 +40,7 @@ public class Admin {
     @Size(max = 50)
     @NotBlank
     private String username;
-    @Size(max = 50)
+    @Size(max = 120)
     @NotBlank
     @JsonIgnore
     private String password;

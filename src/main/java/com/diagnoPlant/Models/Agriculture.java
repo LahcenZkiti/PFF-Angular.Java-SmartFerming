@@ -38,7 +38,7 @@ public class Agriculture {
     @Size(max = 50)
     @NotBlank
     private String username;
-    @Size(max = 50)
+    @Size(max = 120)
     @NotBlank
     @JsonIgnore
     private String password;
