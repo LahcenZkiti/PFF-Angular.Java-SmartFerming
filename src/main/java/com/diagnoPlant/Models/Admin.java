@@ -7,6 +7,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,9 +24,10 @@ import java.util.Set;
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
-public class Admin {
-
-    @Id
+public class Admin{
+	
+	
+	@Id
     @GeneratedValue
     private Long id;
     @Size(max = 20)

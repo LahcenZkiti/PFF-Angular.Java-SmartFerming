@@ -14,6 +14,11 @@ import { RegisterComponent } from './pages/autentification/register/register.com
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo:'expert', 
+    pathMatch:'full'
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
@@ -52,11 +57,6 @@ const routes: Routes = [
   {
     path: 'allresponse',
     component: EspaceUserComponent
-  },
-  {
-    path: '',
-    redirectTo:'expert', 
-    pathMatch:'full'
   }
 ];
 

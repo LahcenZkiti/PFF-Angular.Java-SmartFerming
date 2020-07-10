@@ -19,8 +19,8 @@ public class JwtUtils {
     @Value("${diagnoPlant.jwtSecret}")
     private String jwtSecret;
 
-    @Value("${diagnoPlant.jwtExpirationMs}")
-    private int jwtExpirationMs;
+    @Value("${diagnoPlant.jwtExpiration}")
+    private int jwtExpiration;
 
     public String generateJwtToken(Authentication authentication) {
 
@@ -29,7 +29,7 @@ public class JwtUtils {
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername()))
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                .setExpiration(new Date((new Date()).getTime() + jwtExpiration))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }

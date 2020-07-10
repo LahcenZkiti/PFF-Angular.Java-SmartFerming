@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
-
+ 
     public static final String AGRICULTURE =  "AGRICULTURE";
     public static final String EXPERT =  "EXPERT";
     public static final String ADMIN =  "ADMIN";
@@ -36,10 +36,20 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = authorities;
     }
 
+
+	/**
+	 * 
+	 * @param admin
+	 * @return UserDetailsImpl {@link UserDetailsImpl UserDetailsImpl.class}
+	 */
     public static UserDetailsImpl build(Admin admin) {
         List<GrantedAuthority> authorities = admin.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
+
+        System.out.println("password in db ======================== " + admin.getPassword());
+        System.out.println("password in db ======================== " + admin.getEmail());
+        System.out.println("password in db ======================== " + admin.getUsername());
 
         return new UserDetailsImpl(
                 admin.getId(),
@@ -50,6 +60,12 @@ public class UserDetailsImpl implements UserDetails {
                 authorities);
     }
 
+
+	/**
+	 * 
+	 * @param agriculture
+	 * @return UserDetailsImpl {@link UserDetailsImpl UserDetailsImpl.class}
+	 */
     public static UserDetailsImpl build(Agriculture agriculture){
         List<GrantedAuthority> authorities = agriculture.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
@@ -63,7 +79,13 @@ public class UserDetailsImpl implements UserDetails {
                 AGRICULTURE,
                 authorities);
     }
+    
 
+	/**
+	 * 
+	 * @param expert
+	 * @return UserDetailsImpl {@link UserDetailsImpl UserDetailsImpl.class}
+	 */
     public static UserDetailsImpl build(Expert expert){
         List<GrantedAuthority> authorities = expert.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
@@ -83,7 +105,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     public Long getId() {
@@ -92,14 +114,6 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getEmail() {
         return email;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
     }
 
     @Override
@@ -111,6 +125,16 @@ public class UserDetailsImpl implements UserDetails {
     public String getUsername() {
         return username;
     }
+
+    public String getUserType() {
+        return userType;
+    }
+
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
 
     @Override
     public boolean isAccountNonExpired() {
@@ -138,7 +162,6 @@ public class UserDetailsImpl implements UserDetails {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-
         UserDetailsImpl user = (UserDetailsImpl) o;
         return Objects.equals(id, user.id);
     }

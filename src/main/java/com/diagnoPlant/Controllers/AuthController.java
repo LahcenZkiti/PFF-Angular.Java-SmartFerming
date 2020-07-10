@@ -89,7 +89,7 @@ public class AuthController {
      * @param loginRequest
      * @return JwtResponse
      */
-    @PostMapping("/agriculture/singin")
+    @PostMapping("/agriculture/signin")
     public ResponseEntity<?> authenticateAgriculcture(@Valid @RequestBody LoginRequest loginRequest) {
         return authenticate(loginRequest, agricultureAuthenticationProvider);
     }
@@ -99,11 +99,14 @@ public class AuthController {
      * @return JwtResponse
      */
     public ResponseEntity<?> authenticate(@Valid @RequestBody LoginRequest loginRequest, DaoAuthenticationProvider daoAuthenticationProvider) {
+        System.out.println(":::::::::::::::::::::::::::::::::::: SIGNIN");
+        System.out.println(":::::::::::::::::::username : " + loginRequest.getUsername());
+        System.out.println(":::::::::::::::::::password : " + loginRequest.getPassword());
 
         try {
             Authentication authentication = daoAuthenticationProvider.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
-            System.out.println("====================== after authenticationmanager : " + loginRequest.getEmail());
+                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+            System.out.println("::::::::::::::::::: after authenticationManager : " + loginRequest.getUsername());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtUtils.generateJwtToken(authentication);
 
@@ -124,6 +127,8 @@ public class AuthController {
                     .badRequest()
                     .body(new ResponseMessage("Bad Credentials"));
         }
+
+
     }
 
     /**

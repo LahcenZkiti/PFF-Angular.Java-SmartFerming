@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -53,11 +52,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder.authenticationProvider(getAgricultureAuthenticationProvider());
     }
 
-//    @Bean
-//    @Override
-//    public AuthenticationManager authenticationManagerBean() throws Exception {
-//        return super.authenticationManagerBean();
-//    }
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -69,7 +68,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/api/auth/**").permitAll()
+                .authorizeRequests()
+                .antMatchers("/api/auth/**").permitAll()
+                .antMatchers("/api/test/**").permitAll()
                 .antMatchers("/api/img/**").permitAll()
                 .antMatchers("/api/mld/**").permitAll()
                 .antMatchers("/agriculture/**").permitAll()
@@ -97,10 +98,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public AdminAuthenticationProvider getAdminAuthenticationProvider() {
-        AdminAuthenticationProvider dao = new AdminAuthenticationProvider();
-        dao.setUserDetailsService(adminDetailsService);
-        dao.setPasswordEncoder(passwordEncoder());
-        return dao;
-    }
+	public AdminAuthenticationProvider getAdminAuthenticationProvider() {
+		AdminAuthenticationProvider dao = new AdminAuthenticationProvider();
+		dao.setUserDetailsService(adminDetailsService);
+		dao.setPasswordEncoder(passwordEncoder());
+		return dao;
+	}
 }

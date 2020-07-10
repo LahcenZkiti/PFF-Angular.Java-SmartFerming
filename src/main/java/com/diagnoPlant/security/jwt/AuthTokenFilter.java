@@ -8,9 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.diagnoPlant.services.AdminDetailsServiceImpl;
-import com.diagnoPlant.services.ExpertDetailsServiceImpl;
-import com.diagnoPlant.services.UserDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +18,9 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.diagnoPlant.services.AdminDetailsServiceImpl;
+import com.diagnoPlant.services.ExpertDetailsServiceImpl;
+import com.diagnoPlant.services.UserDetailsImpl;
 import com.diagnoPlant.services.AgricultureDetailsServiceImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
@@ -46,6 +46,9 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
                 String username = jwtUtils.getUserNameFromJwtToken(jwt);
                 String userType = request.getHeader("User-type");
+
+                System.out.println("===================== username : "+username);
+
                 UserDetails userDetails;
 
                 switch (userType) {
@@ -58,6 +61,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                             break;
                     case UserDetailsImpl
                             .ADMIN: userDetails = adminDetailsService.loadUserByUsername(username);
+                            System.out.println("doFilterInternl username =================== " + username );
                             break;
                     default:
                         userDetails = null;
@@ -74,6 +78,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         }
 
         logger.info("request forwarded " + request.getServletPath() );
+
         filterChain.doFilter(request, response);
     }
 

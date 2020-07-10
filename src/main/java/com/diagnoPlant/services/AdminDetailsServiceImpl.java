@@ -16,6 +16,7 @@ public class AdminDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    	System.out.println("username ===================" + username);
         return UserDetailsImpl.build(adminRepository.findByUsername(username)
                         .orElseThrow(() -> new UsernameNotFoundException("Admin Not Found with Username: " + username)));
     }
