@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ImagesService } from 'src/app/services/images.service';
 import { Image } from 'src/app/models/images';
 import { MaladiePlante } from 'src/app/models/maladies-plant';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
-  selector: 'app-espace-user',
-  templateUrl: './espace-user.component.html',
-  styleUrls: ['./espace-user.component.css']
+  selector: 'app-response-expert',
+  templateUrl: './response-expert.component.html',
+  styleUrls: ['./response-expert.component.css']
 })
-export class EspaceUserComponent implements OnInit {
+export class ResponseExpertComponent implements OnInit {
 
   images : Image 
   maladiePlantes : MaladiePlante[]

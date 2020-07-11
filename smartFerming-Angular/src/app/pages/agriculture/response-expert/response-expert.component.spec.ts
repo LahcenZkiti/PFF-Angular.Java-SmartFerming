@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EspaceExpertComponent } from './espace-expert.component';
+import { ResponseExpertComponent } from './response-expert.component';
 
-describe('EspaceExpertComponent', () => {
-  let component: EspaceExpertComponent;
-  let fixture: ComponentFixture<EspaceExpertComponent>;
+describe('ResponseExpertComponent', () => {
+  let component: ResponseExpertComponent;
+  let fixture: ComponentFixture<ResponseExpertComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EspaceExpertComponent ]
+      declarations: [ ResponseExpertComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EspaceExpertComponent);
+    fixture = TestBed.createComponent(ResponseExpertComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -2,20 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ValidateUploadComponent } from 'src/app/PopUp/validate-upload/validate-upload.component';
-/**
- * Component
- */
+
 @Component({
-  selector: 'app-expert',
-  templateUrl: './expert.component.html',
-  styleUrls: ['./expert.component.css']
+  selector: 'app-consulter-expert',
+  templateUrl: './consulter-expert.component.html',
+  styleUrls: ['./consulter-expert.component.css']
 })
-export class ExpertComponent implements OnInit {
+export class ConsulterExpertComponent implements OnInit {
 
   /**
    * Url  of expert component
    */
-  API_URL = 'http://localhost:8080/';
+  API_URL = 'http://localhost:8080/api/img/';
 
   /**
    * Selected file of expert component
@@ -54,7 +52,7 @@ export class ExpertComponent implements OnInit {
       JSON.stringify(res);
       const modalRef = this.modalService.open(ValidateUploadComponent);
       if(this.selectedFile.name.length > 0){
-        modalRef.componentInstance.msg = "Votre image a bien été enregistrée! \n Nous vous enverrons une réponse d'expert \n Nous vous remercions de votre confiance ...";
+        modalRef.componentInstance.msg = "Votre image a bien été enregistrée! \nNous vous enverrons une réponse d'expert \nNous vous remercions de votre confiance ...";
           return true
       }else{
         modalRef.componentInstance.msg = 'veuillez sélectionner une image !';
@@ -62,7 +60,6 @@ export class ExpertComponent implements OnInit {
       }
     })
   }
-  
   
 
 }

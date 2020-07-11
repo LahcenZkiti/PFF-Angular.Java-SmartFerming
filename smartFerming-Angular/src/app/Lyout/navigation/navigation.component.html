@@ -8,7 +8,7 @@
     <div *ngIf="!showAgricultureBoard && !showExpertBoard && !showAdminBoard" class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="btn btn-success" [routerLink]="['/detect-auto']" routerLinkActive="router-link-active" >Home</a>
+                <a class="btn btn-success" [routerLink]="['/home']" routerLinkActive="router-link-active" >Home</a>
             </li>
             <li class="nav-item active">
                 <a class="btn btn-success" [routerLink]="['/']" routerLinkActive="router-link-active" >About</a>
@@ -20,7 +20,8 @@
                 <a class="btn btn-success" [routerLink]="['/']" routerLinkActive="router-link-active" >Contact</a>
             </li>
         </ul>
-        <button class="btn btn-success my-2 my-sm-0">Login <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+        <button class="btn btn-success my-2 my-sm-0" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+        <button class="btn btn-success my-2 my-sm-0" [routerLink]="['/register']" routerLinkActive="router-link-active" >Signup <i class="fa fa-sign-out"></i></button>
     </div>
 
     <!--agriculture-->
@@ -30,7 +31,7 @@
                 <a class="btn btn-success" [routerLink]="['/detect-auto']" routerLinkActive="router-link-active" >Home</a>
             </li>
             <li class="nav-item active">
-                <a class="btn btn-success" [routerLink]="['/expert']" routerLinkActive="router-link-active" >Consulter l'expert</a>
+                <a class="btn btn-success" [routerLink]="['/consulter']" routerLinkActive="router-link-active" >Consulter l'expert</a>
             </li>
             <li class="nav-item active">
                 <a class="btn btn-success" [routerLink]="['/allresponse']" routerLinkActive="router-link-active" >avis expert</a>
@@ -56,7 +57,7 @@
     </div>
     
     <!--admin-->
-    <div *ngIf="!showAgricultureBoard && showExpertBoard && showAdminBoard" class="collapse navbar-collapse" id="collapsibleNavId">
+    <div *ngIf="!showAgricultureBoard && !showExpertBoard && showAdminBoard" class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
                 <a class="btn btn-success" [routerLink]="['/espace-expert']" routerLinkActive="router-link-active" >Home</a>

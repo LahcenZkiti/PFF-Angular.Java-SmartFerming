@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExpertComponent } from './expert.component';
+import { AgriculLoginComponent } from './agricul-login.component';
 
-describe('ExpertComponent', () => {
-  let component: ExpertComponent;
-  let fixture: ComponentFixture<ExpertComponent>;
+describe('AgriculLoginComponent', () => {
+  let component: AgriculLoginComponent;
+  let fixture: ComponentFixture<AgriculLoginComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExpertComponent ]
+      declarations: [ AgriculLoginComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExpertComponent);
+    fixture = TestBed.createComponent(AgriculLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

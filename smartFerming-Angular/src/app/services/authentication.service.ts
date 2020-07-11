@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user';
 
 const AUTH_API = 'http://localhost:8080/api/auth/';
-const AGRICULTURE_API = AUTH_API + '/agriculture/';
-const EXPERT_API = AUTH_API + '/expert/';
-const ADMIN_API = AUTH_API + '/admin/';
-const AUTH_user = AUTH_API + '/user'
+const AGRICULTURE_API = AUTH_API + 'agriculture/';
+const EXPERT_API = AUTH_API + 'expert/';
+const ADMIN_API = AUTH_API + 'admin/';
+const AUTH_user = AUTH_API + 'user'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

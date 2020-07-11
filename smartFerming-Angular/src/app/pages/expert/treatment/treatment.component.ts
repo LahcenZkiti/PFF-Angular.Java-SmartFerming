@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { Image } from 'src/app/models/images';
+import { MaladiePlante } from 'src/app/models/maladies-plant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImagesService } from 'src/app/services/images.service';
-import { Image } from 'src/app/models/images';
-import { NgForm } from '@angular/forms';
-import { MaladiePlante } from 'src/app/models/maladies-plant';
 import { MaladiesService } from 'src/app/services/maladies.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-espace-response',
-  templateUrl: './espace-response.component.html',
-  styleUrls: ['./espace-response.component.css']
+  selector: 'app-treatment',
+  templateUrl: './treatment.component.html',
+  styleUrls: ['./treatment.component.css']
 })
-export class EspaceResponseComponent implements OnInit {
+export class TreatmentComponent implements OnInit {
 
-
+  
   images : Image = new Image();
 
   maladiePlantes: MaladiePlante ;
@@ -60,5 +60,4 @@ export class EspaceResponseComponent implements OnInit {
       console.log("data sent ==>",JSON.stringify(image));
     })
   }
-
 }
