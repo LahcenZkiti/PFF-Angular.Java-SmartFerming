@@ -12,7 +12,6 @@ import { DetectionAutoComponent } from './pages/detection-auto/detection-auto.co
 import { HttpClientModule } from '@angular/common/http';
 import { ExpertComponent } from './pages/expert/expert.component';
 import { ValidateUploadComponent } from './PopUp/validate-upload/validate-upload.component';
-import { NavigationExpertComponent } from './Lyout/navigation-expert/navigation-expert.component';
 import { EspaceExpertComponent } from './pages/espace-expert/espace-expert.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { EspaceResponseComponent } from './pages/espace-response/espace-response.component';
@@ -24,9 +23,6 @@ import { EspaceUserComponent } from './pages/espace-user/espace-user.component';
 import { LoginComponent } from './pages/autentification/login/login.component';
 import { RegisterComponent } from './pages/autentification/register/register.component';
 import { FooterComponent } from './Lyout/footer/footer.component';
-import { NavRegisterComponent } from './Lyout/nav-register/nav-register.component';
-import { NavLoginComponent } from './Lyout/nav-login/nav-login.component'
-
 
 @NgModule({
   declarations: [
@@ -35,7 +31,6 @@ import { NavLoginComponent } from './Lyout/nav-login/nav-login.component'
     DetectionAutoComponent,
     ExpertComponent,
     ValidateUploadComponent,
-    NavigationExpertComponent,
     EspaceExpertComponent,
     EspaceResponseComponent,
     AddMaladiePlantComponent,
@@ -45,9 +40,7 @@ import { NavLoginComponent } from './Lyout/nav-login/nav-login.component'
     EspaceUserComponent,
     LoginComponent,
     RegisterComponent,
-    FooterComponent,
-    NavRegisterComponent,
-    NavLoginComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,

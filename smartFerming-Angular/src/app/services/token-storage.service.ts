@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
+const USER_TYPE = 'user-type';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,17 @@ export class TokenStorageService {
 
   public getToken(): string {
     return sessionStorage.getItem(TOKEN_KEY);
+  }
+
+  public saveUserType(userType:string){
+    console.log("saving in storage " + USER_TYPE + ":" + userType)
+
+    localStorage.removeItem(USER_TYPE);
+    localStorage.setItem(USER_TYPE, userType);
+  }
+
+  public getUserType(): string {
+    return localStorage.getItem(USER_TYPE);
   }
 
   public saveUser(user) {

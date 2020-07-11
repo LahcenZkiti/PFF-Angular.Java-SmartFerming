@@ -27,23 +27,23 @@ export class LoginComponent implements OnInit {
   }
 
   onlogin(){
-    this.authService.login(this.form).subscribe(
-      data => {
-        console.log(data);
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
+    // this.authService.login(this.form).subscribe(
+    //   data => {
+    //     console.log(data);
+    //     this.tokenStorage.saveToken(data.accessToken);
+    //     this.tokenStorage.saveUser(data);
 
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
-      },
-      err => {
-        console.log(err);
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      }
-    )
+    //     this.isLoginFailed = false;
+    //     this.isLoggedIn = true;
+    //     this.roles = this.tokenStorage.getUser().roles;
+    //     this.reloadPage();
+    //   },
+    //   err => {
+    //     console.log(err);
+    //     this.errorMessage = err.error.message;
+    //     this.isLoginFailed = true;
+    //   }
+    // )
   }
 
   reloadPage() {

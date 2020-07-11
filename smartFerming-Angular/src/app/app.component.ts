@@ -7,7 +7,7 @@ import { TokenStorageService } from './services/token-storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'smartFerming-Angular';
+  title = 'smartFerming';
 
   private roles: string[];
   isLoggedIn = false;
@@ -23,10 +23,10 @@ export class AppComponent implements OnInit{
 
     if(this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
+      // this.roles = user.roles;
 
-      this.showAdminBoard = this.roles.includes('ROLE_AMIN');
-      this.showExpertBoard = this.roles.includes('ROLE_EXPERT');
+      // this.showAdminBoard = this.roles.includes('ROLE_AMIN');
+      // this.showExpertBoard = this.roles.includes('ROLE_EXPERT');
 
       this.username = user.username;
     }
