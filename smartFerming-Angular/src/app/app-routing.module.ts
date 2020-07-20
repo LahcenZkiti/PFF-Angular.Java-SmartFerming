@@ -4,8 +4,6 @@ import { DetectionAutoComponent } from './pages/agriculture/detection-auto/detec
 import { AddMaladiePlantComponent } from './pages/maladiesPlant/add-maladie-plant/add-maladie-plant.component';
 import { ListMaladiePlantComponent } from './pages/maladiesPlant/list-maladie-plant/list-maladie-plant.component';
 import { InfoMaladiesComponent } from './pages/maladiesPlant/info-maladies/info-maladies.component';
-import {LoginComponent} from "./pages/autentification/login/login.component";
-import { RegisterComponent } from './pages/autentification/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ConsulterExpertComponent } from './pages/agriculture/consulter-expert/consulter-expert.component';
 import { ListImgComponent } from './pages/expert/list-img/list-img.component';

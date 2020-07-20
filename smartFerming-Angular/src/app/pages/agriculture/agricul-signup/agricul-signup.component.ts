@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-agricul-signup',
@@ -15,7 +16,8 @@ export class AgriculSignupComponent implements OnInit {
   errorMessage = '';
 
   constructor(private authService:AuthenticationService,
-              private router:Router) { }
+              private router:Router,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -26,11 +28,13 @@ export class AgriculSignupComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        this.toastr.success("Your registration is successful!");
         this.router.navigateByUrl('login')
       },
       err => {
         console.log(err)
         this.errorMessage = err.error.message;
+        this.toastr.error("Signup failed!");
         this.isSignUpFailed = true;
       }
     )
