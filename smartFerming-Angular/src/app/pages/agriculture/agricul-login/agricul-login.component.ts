@@ -44,8 +44,8 @@ export class AgriculLoginComponent implements OnInit {
         console.log("login successful");
         this.toastr.success("login successful");
         console.log(this.tokenStorage.getUser());
-        this.reloadPage();
         this.router.navigate(['detect-auto']);
+        this.reloadPage();
       },
       err => {
         console.log(err);
