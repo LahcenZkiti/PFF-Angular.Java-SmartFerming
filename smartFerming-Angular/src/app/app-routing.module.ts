@@ -11,6 +11,8 @@ import { ResponseExpertComponent } from './pages/agriculture/response-expert/res
 import { TreatmentComponent } from './pages/expert/treatment/treatment.component';
 import { AgriculLoginComponent } from './pages/agriculture/agricul-login/agricul-login.component';
 import { AgriculSignupComponent } from './pages/agriculture/agricul-signup/agricul-signup.component';
+import { AgriculAuthGuardService } from './services/agricul-auth-guard.service';
+import { ExpertAuthGuardService } from './services/expert-auth-guard.service';
 
 
 const routes: Routes = [
@@ -33,35 +35,35 @@ const routes: Routes = [
   },
   {
     path:'detect-auto',
-    component: DetectionAutoComponent
+    component: DetectionAutoComponent, canActivate:[AgriculAuthGuardService]
   },
   {
     path: 'consulter',
-    component: ConsulterExpertComponent
+    component: ConsulterExpertComponent, canActivate:[AgriculAuthGuardService]
   },
   {
     path: 'espace-expert',
-    component: ListImgComponent
+    component: ListImgComponent, canActivate: [ExpertAuthGuardService]
   },
   {
     path: 'espace-response/image/:id',
-    component: TreatmentComponent
+    component: TreatmentComponent, canActivate: [ExpertAuthGuardService]
   },
   {
     path:'add-maladies',
-    component: AddMaladiePlantComponent
+    component: AddMaladiePlantComponent, canActivate: [ExpertAuthGuardService]
   },
   {
     path: 'listeMaladies',
-    component: ListMaladiePlantComponent
+    component: ListMaladiePlantComponent, canActivate: [ExpertAuthGuardService]
   },
   {
     path: 'info/maladie/:id',
-    component: InfoMaladiesComponent
+    component: InfoMaladiesComponent, canActivate: [ExpertAuthGuardService]
   },
   {
     path: 'allresponse',
-    component: ResponseExpertComponent
+    component: ResponseExpertComponent, canActivate:[AgriculAuthGuardService]
   }
 ];
 
