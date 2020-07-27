@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ValidateUploadComponent } from 'src/app/PopUp/validate-upload/validate-upload.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-consulter-expert',
@@ -19,13 +20,15 @@ export class ConsulterExpertComponent implements OnInit {
    * Selected file of expert component
    */
   selectedFile : File ;
+  errorMessage = '';
 
   /**
    * Creates an instance of expert component.
    * @param http 
    */
   constructor(private http:HttpClient,
-              private modalService: NgbModal) { }
+              // private modalService: NgbModal,
+              private toastr: ToastrService) { }
 
   /**
    * on init
@@ -48,17 +51,35 @@ export class ConsulterExpertComponent implements OnInit {
   onUpload(){
     const fd = new FormData();
     fd.append('file', this.selectedFile, this.selectedFile.name)
-    this.http.post(this.API_URL + 'telechargerimage', fd).subscribe(res => {
-      JSON.stringify(res);
-      const modalRef = this.modalService.open(ValidateUploadComponent);
-      if(this.selectedFile.name.length > 0){
-        modalRef.componentInstance.msg = "Votre image a bien été enregistrée! \nNous vous enverrons une réponse d'expert \nNous vous remercions de votre confiance ...";
-          return true
-      }else{
-        modalRef.componentInstance.msg = 'veuillez sélectionner une image !';
-        return false;
-      }
-    })
+    this.http.post(this.API_URL + 'telechargerimage', fd, {
+      reportProgress:true,
+      observe:'events'
+    }).subscribe(
+      event => {
+        if(event.type === HttpEventType.UploadProgress){
+          console.log('Upload Progress: '+ Math.round(event.loaded / event.total * 100) + '%')
+        }else if (event.type === HttpEventType.Response){
+          console.log(event);
+          this.successNot();
+        }
+    },
+    
+    err => {
+      console.log(err);
+      this.errorMessage = err.error.message;
+      this.errorNot();
+    }
+    
+    );
+  }
+
+  successNot(){
+    this.toastr.success('Votre image a bien été enregistrée!', 'Upload msg', {
+      progressAnimation: 'increasing'
+    });
+  }
+  errorNot(){
+    this.toastr.error('veuillez sélectionner une image !');
   }
   
 
