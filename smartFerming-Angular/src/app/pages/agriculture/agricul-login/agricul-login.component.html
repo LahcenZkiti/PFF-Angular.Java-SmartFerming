@@ -1,5 +1,6 @@
 
 <div class="content">
+  <div class="container p-4">
     <form class="p-5" *ngIf="!isLoggedIn" name="form" #f="ngForm" (ngSubmit)="f.form.valid && onlogin()" novalidate>
       <div class="form-group">
         <label class="control-label">User name</label>
@@ -29,4 +30,5 @@
     <div class="alert alert-success" *ngIf="isLoggedIn">
       Logged in as {{ roles }}.
     </div>
+  </div>
 </div>

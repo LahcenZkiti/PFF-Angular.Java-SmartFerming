@@ -1,7 +1,9 @@
 <div class="content">
-    <div class="text-center pt-4">
+  <div class="container p-4">
+
+    <!-- <div class="text-center pt-4">
       <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="rounded-circle"/>
-    </div>
+    </div> -->
     <form class="p-4" *ngIf="!isSuccessful" name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
       <div class="form-group">
         <label class="control-label">First name</label>
@@ -77,4 +79,5 @@
     </div>
 
   </div>
+</div>
 
