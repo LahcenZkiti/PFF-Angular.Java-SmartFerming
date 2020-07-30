@@ -63,7 +63,7 @@ import { TreatmentComponent } from './pages/expert/treatment/treatment.component
     NgbModule,
     FlexLayoutModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-top-full-width'
+      positionClass: 'toast-top-center'
     })
   ],
   providers: [],
