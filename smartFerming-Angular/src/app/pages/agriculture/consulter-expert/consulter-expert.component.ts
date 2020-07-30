@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ValidateUploadComponent } from 'src/app/PopUp/validate-upload/validate-upload.component';
 import { ToastrService } from 'ngx-toastr';
-import { error } from 'console';
 
 @Component({
   selector: 'app-consulter-expert',
@@ -22,6 +19,7 @@ export class ConsulterExpertComponent implements OnInit {
    */
   selectedFile : File ;
   errorMessage = '';
+  progress: number = 0;
 
   /**
    * Creates an instance of expert component.
@@ -55,30 +53,42 @@ export class ConsulterExpertComponent implements OnInit {
     this.http.post(this.API_URL + 'telechargerimage', fd, {
       reportProgress:true,
       observe:'events'
-    }).subscribe(
+    })
+    .subscribe(
       event => {
         if(event.type === HttpEventType.UploadProgress){
+          this.progress = Math.round(event.loaded/event.total * 100);
           console.log('Upload Progress: '+ Math.round(event.loaded / event.total * 100) + '%')
         }else if (event.type === HttpEventType.Response){
+          setTimeout(() => {
+            this.progress = 0;
+          }, 1500);
           console.log(event);
           this.successNot();
         }
-    },
+      },
     
-    error => {
-      console.log(error);
-      this.errorMessage = error.error.message;
-      this.errorNot();
-    }
-    
+      error => {
+        console.log(error);
+        this.errorMessage = error.error.message;
+        this.errorNot();
+      }
     );
   }
 
+
+  /**
+   * Success notifications
+   */
   successNot(){
     this.toastr.success('Votre image a bien été enregistrée!', 'Upload msg', {
       progressAnimation: 'increasing'
     });
   }
+
+  /**
+   * Errors notifications
+   */
   errorNot(){
     this.toastr.error('veuillez sélectionner une image !');
   }
