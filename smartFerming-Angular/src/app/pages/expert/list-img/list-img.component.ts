@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Image } from 'src/app/models/images';
 import { ImagesService } from 'src/app/services/images.service';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-list-img',
@@ -15,7 +14,7 @@ export class ListImgComponent implements OnInit {
   /**
    * Images  of espace expert component
    */
-  images: Image;
+  images: Image; 
 
   /**
    * Creates an instance of espace expert component.
@@ -24,8 +23,7 @@ export class ListImgComponent implements OnInit {
    * @param modalService 
    */
   constructor(private imagesServices:ImagesService,
-              private router:Router,
-              private modalService: NgbModal) { }
+              private router:Router) { }
 
   /**
    * on init
