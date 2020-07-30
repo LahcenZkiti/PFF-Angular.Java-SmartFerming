@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { MaladiePlante } from '../models/maladies-plant';
 import { Observable } from 'rxjs';
 
-const API_URL = 'http://localhost:8080/api/img/';
+const API_URL = 'http://localhost:8080/api/mld/';
 
 
 /**
