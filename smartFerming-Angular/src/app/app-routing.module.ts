@@ -13,6 +13,7 @@ import { AgriculLoginComponent } from './pages/agriculture/agricul-login/agricul
 import { AgriculSignupComponent } from './pages/agriculture/agricul-signup/agricul-signup.component';
 import { AgriculAuthGuardService } from './services/agricul-auth-guard.service';
 import { ExpertAuthGuardService } from './services/expert-auth-guard.service';
+import { ExpertLoginComponent } from './pages/expert/expert-login/expert-login.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path:'register',
     component: AgriculSignupComponent
+  },
+  {
+    path: 'login/expert',
+    component: ExpertLoginComponent
   },
   {
     path:'detect-auto',
