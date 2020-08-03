@@ -28,7 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
-import com.diagnoPlant.Messages.ResponseMessage;
+import com.diagnoPlant.payload.response.ResponseMessage;
 import com.diagnoPlant.Models.Image;
 import com.diagnoPlant.Repositorys.ImageRepository;
 
@@ -38,7 +38,8 @@ import com.diagnoPlant.Repositorys.ImageRepository;
  *
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RequestMapping("/api/img")
 public class ImageController {
 	@Autowired
 	private ImageRepository imageRepository;
@@ -155,7 +156,6 @@ public class ImageController {
 	 * Cette méthode permet d'enregistrer les données saisies dans 
 	 * la base de donnée pour chaque image 
 	 * @param m
-	 * @param model
 	 * @param maladiePlante
 	 * @return
 	 */
