@@ -57,6 +57,7 @@ export class TreatmentComponent implements OnInit {
     this.imagesService.addResp(this.images).subscribe(image => {
       this.images = image;
       img.reset();
+      this.router.navigate(['espace-expert']);
       console.log("data sent ==>",JSON.stringify(image));
     })
   }
