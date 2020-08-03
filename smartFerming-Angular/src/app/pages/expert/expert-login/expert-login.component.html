@@ -1,0 +1,34 @@
+
+<div class="content">
+    <div class="container p-4">
+      <form class="p-5" *ngIf="!isLoggedIn" name="form" #f="ngForm" (ngSubmit)="f.form.valid && onlogin()" novalidate>
+        <div class="form-group">
+          <label class="control-label">User name</label>
+          <input type="text" name="username" [(ngModel)]="form.username" #username="ngModel" class="form-control" aria-describedby="User name">
+          <div class="alert alert-danger" role="alert" *ngIf="f.submitted && username.invalid">
+            Username is required!
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="control-label">Password</label>
+          <input type="password" name="password" [(ngModel)]="form.password" #password="ngModel" class="form-control">
+          <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid" >
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">
+              Password must be at least 6 characters
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="Check">
+          <label class="form-check-label" for="Check">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+      <div class="alert alert-success" *ngIf="isLoggedIn">
+        Logged in as {{ roles }}.
+      </div>
+    </div>
+  </div>

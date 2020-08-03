@@ -1,0 +1,83 @@
+<div class="content">
+  <div class="container p-4">
+
+    <!-- <div class="text-center pt-4">
+      <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="rounded-circle"/>
+    </div> -->
+    <form class="p-4" *ngIf="!isSuccessful" name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
+      <div class="form-group">
+        <label class="control-label">First name</label>
+        <input type="text" class="form-control" name="firstname" [(ngModel)]="form.firstname" #firstname="ngModel" minlength="3" maxlength="15" aria-describedby="first name">
+        <div class="alert-danger" *ngIf="f.submitted && firstname.invalid">
+          <div *ngIf="firstname.errors.required">Firstname is required</div>
+          <div *ngIf="firstname.errors.minlength">
+            Firstname must be at least 3 characters
+          </div>
+          <div *ngIf="firstname.errors.maxlength">
+            Firstname must be at most 15 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Last name</label>
+        <input type="text" class="form-control" name="lastname" [(ngModel)]="form.lastname" minlength="3" maxlength="15" #lastname="ngModel" aria-describedby="last name">
+        <div class="alert-danger" *ngIf="f.submitted && lastname.invalid">
+            <div *ngIf="lastname.errors.required">LastName is required</div>
+            <div *ngIf="lastname.errors.minlength">
+              LastName must be at least 3 characters
+            </div>
+            <div *ngIf="lastname.errors.maxlength">
+              LastName must be at most 15 characters
+            </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Email</label>
+        <input type="text" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel" aria-describedby="email">
+        <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+          <div *ngIf="email.errors.required">Email is required</div>
+          <div *ngIf="email.errors.email">
+            Email must be a valid email address
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">User name</label>
+        <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3" maxlength="20" #username="ngModel" aria-describedby="agriculture name">
+        <div class="alert-danger" *ngIf="f.submitted && username.invalid">
+          <div *ngIf="username.errors.required">Username is required</div>
+          <div *ngIf="username.errors.minlength">
+            Username must be at least 3 characters
+          </div>
+          <div *ngIf="username.errors.maxlength">
+            Username must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Password</label>
+        <input type="password" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel" class="form-control" >
+        <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Sign Up</button>
+
+      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Your registration is successful!
+    </div>
+
+  </div>
+</div>
+

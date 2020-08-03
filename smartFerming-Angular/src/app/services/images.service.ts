@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Image } from '../models/images';
 import { Observable } from 'rxjs';
 
+
+const API_URL = 'http://localhost:8080/api/img/';
+
 /**
  * Injectable
  */
@@ -10,11 +13,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ImagesService {
-
-  /**
-   * Api url of images service
-   */
-  API_URL = 'http://localhost:8080/';
 
   /**
    * Images  of images service
@@ -32,7 +30,7 @@ export class ImagesService {
    * @returns all 
    */
   findAll() : Observable<Image>  {
-    return this.http.get<Image>(this.API_URL + 'images');
+    return this.http.get<Image>(API_URL + 'images');
   }
 
   /**
@@ -40,7 +38,7 @@ export class ImagesService {
    * @returns all non trit 
    */
   findAllNonTrit() : Observable<Image> {
-    return this.http.get<Image>(this.API_URL + 'images/nontraiter');
+    return this.http.get<Image>(API_URL + 'images/nontraiter');
   }
 
   /**
@@ -48,7 +46,7 @@ export class ImagesService {
    * @returns all trit 
    */
   findAllTrit() : Observable<Image> {
-    return this.http.get<Image>(this.API_URL + 'images/traiter');
+    return this.http.get<Image>(API_URL + 'images/traiter');
   }
 
   /**
@@ -57,7 +55,7 @@ export class ImagesService {
    * @returns by id 
    */
   findByID(id: number) : Observable<Image> {
-    return this.http.get<Image>(this.API_URL + 'images/' + id)
+    return this.http.get<Image>(API_URL + 'images/' + id)
   }
 
 
@@ -67,7 +65,7 @@ export class ImagesService {
    * @returns by id 
    */
   deleteById(id: number) : Observable<Image> {
-    return this.http.delete<Image>(this.API_URL + 'images/' + id);
+    return this.http.delete<Image>(API_URL + 'images/' + id);
   }
 
   /**
@@ -76,7 +74,7 @@ export class ImagesService {
    * @returns by id 
    */
   updateById(image: Image) : Observable<Image> {
-    return this.http.put<Image>(this.API_URL + 'images/' + image.id, image);
+    return this.http.put<Image>(API_URL + 'images/' + image.id, image);
   }
 
 
@@ -86,7 +84,7 @@ export class ImagesService {
    * @returns resp 
    */
   addResp(image: Image) : Observable<Image>  {
-    return this.http.put<Image>(this.API_URL + 'donneravis/'+image.id , image);
+    return this.http.put<Image>(API_URL + 'donneravis/'+image.id , image);
   }
 
 }
