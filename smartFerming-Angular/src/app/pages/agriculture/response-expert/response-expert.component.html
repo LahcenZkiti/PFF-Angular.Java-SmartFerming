@@ -3,7 +3,7 @@
         <div class="col mb-4" *ngFor="let image of images">
         
             <div class="card h-100" style="background-color: #d7dde8;">
-                <img src="http://localhost:8080/image/{{image.id}}"
+                <img src="http://localhost:8080/api/img/image/{{image.id}}"
                   class="card-img-top" alt="">
                 <div class="card-body">
                     <h2 class="card-title">Recommandation d'expert</h2>
@@ -26,6 +26,25 @@
                     <hr>
                     <h3 class="card-title" style="color: cornflowerblue;">Informations complementaires</h3>
                     <p class="card-text">{{image.infosCompl}}</p>
+                    <hr>
+                    <!--Rating-->
+                    <ul class="rating mb-1 pb-2">
+                        <li>
+                        <i class="fas fa-star fa-xs"></i>
+                        </li>
+                        <li>
+                        <i class="fas fa-star fa-xs"></i>
+                        </li>
+                        <li>
+                        <i class="fas fa-star fa-xs"></i>
+                        </li>
+                        <li>
+                        <i class="fas fa-star fa-xs"></i>
+                        </li>
+                        <li>
+                        <i class="far fa-star fa-xs"></i>
+                        </li>
+                    </ul>
                     <hr>
                     <p class="card-text"><small class="text-muted">Last updated 2 mins ago</small></p>
                 </div>
