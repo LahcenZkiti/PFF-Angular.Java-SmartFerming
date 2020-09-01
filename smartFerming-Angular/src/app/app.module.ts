@@ -6,7 +6,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavigationComponent } from './Lyout/navigation/navigation.component';
+import { NavigationComponent } from './layout/navigation/navigation.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetectionAutoComponent } from './pages/agriculture/detection-auto/detection-auto.component';
@@ -17,7 +17,7 @@ import { AddMaladiePlantComponent } from './pages/maladiesPlant/add-maladie-plan
 import { ListMaladiePlantComponent } from './pages/maladiesPlant/list-maladie-plant/list-maladie-plant.component';
 import { InfoMaladiesComponent } from './pages/maladiesPlant/info-maladies/info-maladies.component';
 import { TraiterImgageComponent } from './PopUp/traiter-imgage/traiter-imgage.component';
-import { FooterComponent } from './Lyout/footer/footer.component';
+import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ConsulterExpertComponent } from './pages/agriculture/consulter-expert/consulter-expert.component';
 import { ExpertLoginComponent } from './pages/expert/expert-login/expert-login.component';
