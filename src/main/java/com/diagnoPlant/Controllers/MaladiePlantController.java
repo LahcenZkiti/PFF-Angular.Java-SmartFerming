@@ -3,6 +3,7 @@ package com.diagnoPlant.Controllers;
 import java.util.List;
 import java.util.Optional;
 
+import com.diagnoPlant.payload.response.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,8 @@ public class MaladiePlantController {
 	 * @return
 	 */
 	@PostMapping("/addMaladie")
-	public ResponseEntity<MaladiePlante> ajoutMaladie(@RequestBody MaladiePlante mldPlant) {
+	public ResponseEntity<ResponseMessage> ajoutMaladie(@RequestBody MaladiePlante mldPlant) {
+		String message = "";
 		try {
 			MaladiePlante _mld = mldRepo
 					.save(new MaladiePlante(mldPlant.getNomMaladie(), 
@@ -33,9 +35,12 @@ public class MaladiePlantController {
 											mldPlant.getCauses(), 
 											mldPlant.getTraitement(), 
 											mldPlant.getActionsPreventives()));
-			return new ResponseEntity<>(_mld, HttpStatus.CREATED);
+
+			message = "Created Success";
+			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
 		}catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+			message = "Error Failed create";
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
 		}
 	}
 	
