@@ -23,13 +23,13 @@ export class ListMaladiePlantComponent implements OnInit {
    * @param maladieService 
    * @param router 
    */
-  constructor(public maladieService:MaladiesService,
+  constructor(private maladieService:MaladiesService,
               private router: Router) { }
 
   /**
    * on init
    */
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.getMaladies();
   }
 
@@ -74,7 +74,7 @@ export class ListMaladiePlantComponent implements OnInit {
   /**
    * Searchs by name
    */
-  searchByName() {
+  // searchByName() {
    
-  }
+  // }
 }

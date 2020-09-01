@@ -1,7 +1,3 @@
-* {
-    box-sizing: border-box;
-  }
-  
   #myInput {
     background-image: url('src/img/chercher.png');
     background-size: 18px;
@@ -14,25 +10,49 @@
     margin-bottom: 12px;
   }
   
-  #myUL {
+  /* #myUL {
     list-style-type: none;
     padding: 0;
     margin: 0;
   }
-  
-  #myUL li a {
+   */
+  /* .list-group-item {
     border: 1px solid #ddd;
-    margin-top: -1px; /* Prevent double borders */
+    margin-top: -1px; 
     background-color: #f6f6f6;
     padding: 12px;
     text-decoration: none;
     font-size: 18px;
     color: black;
-    display: block
+    display: block;
+  } */
+
+  .item_delete{
+    color: brown;
+  }
+
+  .item_edit{
+    color: #757f9a;
+    margin-right: 15px;
+  }
+
+  .fas{
+    float: right;
   }
   
-  #myUL li a:hover:not(.header) {
-    background-color: #eee;
+  .list-group-item {
+    border: 1px solid #ddd;
+    margin-top: -1px; 
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+
+  }
+
+  .list-group-item:hover:not(.header) {
+    background-color: rgba(13, 151, 0, 0.39);
+    color: rgb(251, 235, 0);
   }
 
 div.content {
