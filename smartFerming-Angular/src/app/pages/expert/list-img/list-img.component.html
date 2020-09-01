@@ -2,9 +2,9 @@
     <div class="d-flex flex-wrap">
         <div class="p-4" *ngFor="let image of images">
             <div class="card" style="width:400px">
-                <div class="card-header">
+                <!-- <div class="card-header">
                     <h4>{{image.image}}<i class="fas fa-images"></i></h4>
-                </div>
+                </div> -->
                 <div class="card-body p-4">
                     <img class="card-img-top" src="http://localhost:8080/api/img/image/{{image.id}}"  alt="">
                     <button class="btn btn-secondary m-2" type="submit" (click)="traitImg(image.id)">Traiter l'image</button> 
