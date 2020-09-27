@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.diagnoPlant.payload.response.ResponseMessage;
+import com.sipios.springsearch.anotation.SearchSpec;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,8 +49,7 @@ public class MaladiePlantController {
 	
 	
 	/**
-	 * Cette méthode permet d'afficher les maladies 
-	 * @param nomMaladie
+	 * Cette méthode permet d'afficher les maladies
 	 * @return
 	 */
 	@GetMapping("/listMaladies")
@@ -57,13 +58,17 @@ public class MaladiePlantController {
 			List<MaladiePlante> maladies = mldRepo.findAll();
 			
 			return ResponseEntity.status(HttpStatus.OK).body(maladies);
-	
+	}
+
+	@GetMapping("/nomMLD")
+	public ResponseEntity<List<MaladiePlante>> searchForMaladie(@SearchSpec Specification<MaladiePlante> specification) {
+		return new ResponseEntity<>(mldRepo.findAll(Specification.where(specification)), HttpStatus.OK);
 	}
 	
 
 	/**
 	 * Cette méthode permet d'afficher les maladies par id
-	 * @param nomMaladie
+	 * @param id
 	 * @return
 	 */
 	@GetMapping("/listMaladies/{id}")
@@ -80,7 +85,7 @@ public class MaladiePlantController {
 	
 	/**
 	 * Cette méthode permet de modifier les maladies par id
-	 * @param nomMaladie
+	 * @param id
 	 * @return
 	 */
 	@PutMapping("/listMaladies/{id}")
@@ -104,7 +109,7 @@ public class MaladiePlantController {
 	
 	/**
 	 * Cette méthode permet de supprimerles maladies par id
-	 * @param nomMaladie
+	 * @param id
 	 * @return
 	 */
 	@DeleteMapping("/listMaladies/{id}")
