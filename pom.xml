@@ -49,6 +49,11 @@
          	  <version>2.6</version>
    	</dependency>
 	<dependency>
+		<groupId>com.sipios</groupId>
+		<artifactId>spring-search</artifactId>
+		<version>0.2.0</version>
+	</dependency>
+	<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
