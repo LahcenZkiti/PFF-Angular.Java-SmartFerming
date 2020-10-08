@@ -29,7 +29,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
 import com.diagnoPlant.payload.response.ResponseMessage;
+import com.diagnoPlant.Models.Agriculture;
 import com.diagnoPlant.Models.Image;
+import com.diagnoPlant.Repositorys.AgricultureRepository;
 import com.diagnoPlant.Repositorys.ImageRepository;
 
 /**
@@ -43,7 +45,8 @@ import com.diagnoPlant.Repositorys.ImageRepository;
 public class ImageController {
 	@Autowired
 	private ImageRepository imageRepository;
-	
+	@Autowired
+	private AgricultureRepository agriculRepository;
 	
 	@Value("${dir.images}")
 	private String imageDir;
@@ -57,7 +60,9 @@ public class ImageController {
 	 * @throws IllegalStateException 
 	 */	
 	@PostMapping("/telechargerimage")
-	public ResponseEntity<ResponseMessage> uploadImage(@RequestParam("file") MultipartFile file,Image image) throws IllegalStateException, IOException {
+	public ResponseEntity<ResponseMessage> uploadImage(	@RequestParam("file") MultipartFile file,
+														// @RequestParam(name = "id")Long id ,
+														Image image) throws IllegalStateException, IOException {
 		String message = "";
     
 		if (!(file.isEmpty())) {image.setImage(file.getOriginalFilename());}
@@ -65,17 +70,16 @@ public class ImageController {
 		imageRepository.save(image);
 		
 	    try {
-	    	
-
 	    	if (!(file.isEmpty())) {
 				image.setImage(file.getOriginalFilename());
-				image.setUrlImage("http://localhost:8080/images/"+ image.getId());
-				
+				// image.setUrlImage("http://localhost:8080/images/"+ image.getId());
 				file.transferTo(new File(imageDir+ image.getId()));
-				
-				imageRepository.save(image);
 	    	}
-	    
+			
+			// Agriculture agrcl = agriculRepository.getOne(id);
+			
+			// image.setAgriculture(agrcl);
+			imageRepository.save(image);
 	    	
 			message = "Votre image a bien été enregistrée! : " + file.getOriginalFilename();
 			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
@@ -144,7 +148,7 @@ public class ImageController {
 			  _image.setId(image.getId());
 			  _image.setEtatTraitement(image.isEtatTraitement());
 			  _image.setImage(image.getImage());
-			  _image.setUrlImage(image.getUrlImage());
+			//   _image.setUrlImage(image.getUrlImage());
 			
 			return new ResponseEntity<>(imageRepository.save(_image), HttpStatus.OK);
 		}else {
@@ -166,7 +170,7 @@ public class ImageController {
 			Image _m = img.get();
 			_m.setEtatTraitement(true);
 			_m.setImage(m.getImage());
-			_m.setUrlImage(m.getUrlImage());
+			// _m.setUrlImage(m.getUrlImage());
 			_m.setInfosCompl(m.getInfosCompl());
 			_m.setMaladiePlante(m.getMaladiePlante());
 			return new ResponseEntity<>(imageRepository.save(_m), HttpStatus.OK);
