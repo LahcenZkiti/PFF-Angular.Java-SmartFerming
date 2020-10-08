@@ -19,8 +19,11 @@ public class Image implements Serializable{
 	private Long id;
 	private boolean etatTraitement;
 	private String image;
-	private String urlImage;
+	// private String urlImage;
 	private String infosCompl ;
+
+	@ManyToOne
+	private Agriculture agriculture;
 	
 	@ManyToOne
 	private MaladiePlante maladiePlantes;
@@ -42,7 +45,7 @@ public class Image implements Serializable{
 		super();
 		this.id = id;
 		this.image = image;
-		this.urlImage = urlString;
+		// this.urlImage = urlString;
 		this.maladiePlantes = maladiePlantes;
 	}
 	
@@ -92,18 +95,18 @@ public class Image implements Serializable{
 	public void setImage(String image) {
 		this.image = image;
 	}
-	/**
-	 * @return the urlImage
-	 */
-	public String getUrlImage() {
-		return urlImage;
-	}
-	/**
-	 * @param urlImage the urlImage to set
-	 */
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
-	}
+	// /**
+	//  * @return the urlImage
+	//  */
+	// public String getUrlImage() {
+	// 	return urlImage;
+	// }
+	// /**
+	//  * @param urlImage the urlImage to set
+	//  */
+	// public void setUrlImage(String urlImage) {
+	// 	this.urlImage = urlImage;
+	// }
 	/**
 	 * @return the infosCompl
 	 */
@@ -132,6 +135,12 @@ public class Image implements Serializable{
 		this.maladiePlantes = maladiePlantes;
 	}
 
+	public Agriculture getAgriculture(){
+		return agriculture;
+	}
 
+	public void setAgriculture(Agriculture agriculture){
+		this.agriculture = agriculture;
+	}
 
 }
