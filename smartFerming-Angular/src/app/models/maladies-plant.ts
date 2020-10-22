@@ -1,5 +1,5 @@
 export  class MaladiePlante {
-    id ?: number;
+    idMaladiePlante ?: number;
     nomMaladie : string;
     symptomes : string;
     causes : string;
