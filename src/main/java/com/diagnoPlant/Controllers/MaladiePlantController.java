@@ -15,7 +15,7 @@ import com.diagnoPlant.Models.MaladiePlante;
 import com.diagnoPlant.Repositorys.MaladiePlantRepository;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/mld")
 public class MaladiePlantController {
 	@Autowired
@@ -27,7 +27,7 @@ public class MaladiePlantController {
 	 * @param mldPlant
 	 * @return
 	 */
-	@PostMapping("/addMaladie")
+	@PostMapping
 	public ResponseEntity<ResponseMessage> ajoutMaladie(@RequestBody MaladiePlante mldPlant) {
 		String message = "";
 		try {
@@ -52,7 +52,7 @@ public class MaladiePlantController {
 	 * Cette méthode permet d'afficher les maladies
 	 * @return
 	 */
-	@GetMapping("/listMaladies")
+	@GetMapping
 	public ResponseEntity<List<MaladiePlante>> getAllMaladies() {
 		
 			List<MaladiePlante> maladies = mldRepo.findAll();
@@ -71,7 +71,7 @@ public class MaladiePlantController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/listMaladies/{id}")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<MaladiePlante> getMaladieById(@PathVariable("id") Long id) {
 		Optional<MaladiePlante> mldlData = mldRepo.findById(id);
 
@@ -88,7 +88,7 @@ public class MaladiePlantController {
 	 * @param id
 	 * @return
 	 */
-	@PutMapping("/listMaladies/{id}")
+	@PutMapping(value = "/{id}")
 	public ResponseEntity<MaladiePlante> updateMldPlante(@PathVariable("id")Long id, @RequestBody MaladiePlante mldPlante) {
 		Optional<MaladiePlante> mldData = mldRepo.findById(id);
 		
@@ -112,8 +112,8 @@ public class MaladiePlantController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/listMaladies/{id}")
-	public ResponseEntity<HttpStatus> deleteMaladie(@PathVariable("id") Long id) {
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<HttpStatus> deleteMaladie(@PathVariable(value = "id")Long id) {
 	    try {
 	      mldRepo.deleteById(id);
 	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -128,7 +128,7 @@ public class MaladiePlantController {
 	 * @param 
 	 * @return
 	 */
-	@DeleteMapping("/listMaladies")
+	@DeleteMapping
 	  public ResponseEntity<HttpStatus> deleteAllMaladies() {
 	    try {
 	      mldRepo.deleteAll();
