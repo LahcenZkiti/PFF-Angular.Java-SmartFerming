@@ -12,7 +12,7 @@ public interface ExpertService {
     * List des experts
     * @return List<Expert>
     * */
-    Optional<List<Expert>> findAll(Sort sort);
+    Optional<List<Expert>> findAll();
 
     /*
      * trouver un expert par son id

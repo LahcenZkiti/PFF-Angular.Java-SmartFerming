@@ -16,8 +16,8 @@ public class ExpertServiceImlp implements ExpertService {
     private ExpertRepository expertRepository;
 
     @Override
-    public Optional<List<Expert>> findAll(Sort sort) {
-        return Optional.of(expertRepository.findAll(sort));
+    public Optional<List<Expert>> findAll() {
+        return Optional.of(expertRepository.findAll());
     }
 
     @Override
