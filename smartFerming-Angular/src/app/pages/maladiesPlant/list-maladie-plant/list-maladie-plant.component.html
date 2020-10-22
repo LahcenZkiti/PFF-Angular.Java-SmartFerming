@@ -18,9 +18,9 @@
         <ul *ngFor="let maladie of maladies" class="list-group list-group-flush">
             <li class="list-group-item">
                 <span class="item_name">{{maladie.nomMaladie}}</span>
-                <a [routerLink]="['/delete']"><i class="fas fa-trash-alt item_delete"></i></a>
-                <a [routerLink]="['/edit']"><i class="fas fa-pen item_edit"></i></a>
-            </li> 
+                <a (click)="deleteMaladie(maladie.idMaladiePlante)"><i class="fas fa-trash-alt item_delete"></i></a>
+                <a (click)="editMaladie(maladie.idMaladiePlante)"><i class="fas fa-pen item_edit"></i></a>
+            </li>
         </ul>
     </div>
 </div>

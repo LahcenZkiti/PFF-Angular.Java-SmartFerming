@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MaladiesService } from 'src/app/services/maladies.service';
 import { MaladiePlante } from 'src/app/models/maladies-plant';
 import { Router } from '@angular/router';
+import { Console } from 'console';
 
 /**
  * Component
@@ -16,12 +17,13 @@ export class ListMaladiePlantComponent implements OnInit {
   /**
    * Maladies  of list maladie plant component
    */
-  maladies : MaladiePlante; 
+
+  maladies : MaladiePlante[] ;
 
   /**
    * Creates an instance of list maladie plant component.
-   * @param maladieService 
-   * @param router 
+   * @param maladieService
+   * @param router
    */
   constructor(private maladieService:MaladiesService,
               private router: Router) { }
@@ -29,7 +31,7 @@ export class ListMaladiePlantComponent implements OnInit {
   /**
    * on init
    */
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.getMaladies();
   }
 
@@ -37,22 +39,8 @@ export class ListMaladiePlantComponent implements OnInit {
    * Gets maladies
    */
   getMaladies() {
-    this.maladieService.findAll().subscribe(maladie => {
-      this.maladies = maladie;
-      // console.log(JSON.stringify(maladie));
-    })
+    this.maladieService.findAll().subscribe(maladies => this.maladies = maladies )
   }
-
-  // /**
-  //  * Gets maladie by name
-  //  * @param id 
-  //  */
-  // getMaladieByName(id: number) {
-  //   this.maladieService.findById(id).subscribe( maladie => {
-  //     this.maladies = maladie;
-  //     console.log(JSON.stringify(maladie));
-  //   })
-  // }
 
   /**
    * Adds list maladie plant component
@@ -61,10 +49,25 @@ export class ListMaladiePlantComponent implements OnInit {
     this.router.navigate(['/add-maladies']);
   }
 
+  /**
+   * Delete maladie
+   * @param id
+   */
+  deleteMaladie(id){
+    if(confirm("Are you sure to delete this maladiePlante")){
+      this.maladieService.delete(id).subscribe(()=>{
+        this.maladies = this.maladies.filter(maladie => maladie.idMaladiePlante != id);
+      })
+    }
+  }
+
+  editMaladie(id){
+    this.router.navigate(['edit/maladie', id]);
+  }
 
   /**
    * Gets by id
-   * @param id 
+   * @param id
    */
   getById(idMld: number) {
     this.router.navigate(['/info/maladie',idMld]);
@@ -74,7 +77,7 @@ export class ListMaladiePlantComponent implements OnInit {
   /**
    * Searchs by name
    */
-  // searchByName() {
-   
-  // }
+  searchByName(query) {
+    console.log("ok")
+  }
 }
