@@ -19,7 +19,7 @@ import { ExpertLoginComponent } from './pages/expert/expert-login/expert-login.c
 const routes: Routes = [
   {
     path: '',
-    redirectTo:'home', 
+    redirectTo:'home',
     pathMatch:'full'
   },
   {
@@ -63,7 +63,7 @@ const routes: Routes = [
     component: ListMaladiePlantComponent, canActivate: [ExpertAuthGuardService]
   },
   {
-    path: 'info/maladie/:id',
+    path: 'edit/maladie/:id',
     component: InfoMaladiesComponent, canActivate: [ExpertAuthGuardService]
   },
   {
