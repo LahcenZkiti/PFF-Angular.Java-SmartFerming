@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MaladiesService } from 'src/app/services/maladies.service';
 import { MaladiePlante } from 'src/app/models/maladies-plant';
 import { error } from 'protractor';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-info-maladies',
@@ -17,7 +18,7 @@ export class InfoMaladiesComponent implements OnInit {
               private maladiesService:MaladiesService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(mldId => {  
+    this.route.params.subscribe(mldId => {
       console.log("id is => ", mldId)
       this.maladiesService.findById(mldId.id).subscribe( maladie => {
         this.maladies = maladie;
@@ -27,6 +28,14 @@ export class InfoMaladiesComponent implements OnInit {
       error => {
         console.log("error : ", error);
       }
+    })
+  }
+
+
+  editMaladie(f:NgForm){
+    this.maladiesService.update(this.maladies).subscribe(()=>{
+      this.router.navigate(['listeMaladies']);
+      f.reset()
     })
   }
 
