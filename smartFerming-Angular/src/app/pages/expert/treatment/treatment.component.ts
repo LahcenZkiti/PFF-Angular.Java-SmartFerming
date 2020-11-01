@@ -13,10 +13,10 @@ import { NgForm } from '@angular/forms';
 })
 export class TreatmentComponent implements OnInit {
 
-  
+
   images : Image = new Image();
 
-  maladiePlantes: MaladiePlante ;
+  maladiePlantes: MaladiePlante[] ;
 
   selectedMaladie: MaladiePlante = new MaladiePlante();
 
@@ -36,10 +36,10 @@ export class TreatmentComponent implements OnInit {
           return
         }
       });
-      
+
       this.getMaladies();
     })
-    
+
   }
 
   getMaladies(): any {

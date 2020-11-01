@@ -23,7 +23,7 @@ export class ConsulterExpertComponent implements OnInit {
 
   /**
    * Creates an instance of expert component.
-   * @param http 
+   * @param http
    */
   constructor(private http:HttpClient,
               // private modalService: NgbModal,
@@ -37,7 +37,7 @@ export class ConsulterExpertComponent implements OnInit {
 
   /**
    * Determines whether file selected on
-   * @param event 
+   * @param event
    */
   onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];
@@ -67,7 +67,7 @@ export class ConsulterExpertComponent implements OnInit {
           this.successNot();
         }
       },
-    
+
       error => {
         console.log(error);
         this.errorMessage = error.error.message;
@@ -92,6 +92,6 @@ export class ConsulterExpertComponent implements OnInit {
   errorNot(){
     this.toastr.error('veuillez sélectionner une image !');
   }
-  
+
 
 }
