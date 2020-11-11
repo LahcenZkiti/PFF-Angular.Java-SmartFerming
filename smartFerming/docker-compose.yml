@@ -1,0 +1,19 @@
+version: '3'
+services:
+  app:
+    image: docker-diagnoplant
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - dbpostgresql
+  dbpostgresql:
+    image: "postgres:alpine"
+    volumes:
+      - scrum-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=diagnoPlantDB
