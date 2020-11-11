@@ -1,1 +1,0 @@
-# PFF-Angular.Java-SmartFerming
