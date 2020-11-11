@@ -1,14 +1,15 @@
-version: '3'
+version: '3.1'
 services:
   app:
-    image: docker-diagnoplant
+    container_name: docker-smartFerming 
+    image: docker-smartFerming
     build: ./
     ports:
       - "8080:8080"
     depends_on:
       - dbpostgresql
   dbpostgresql:
-    image: "postgres:alpine"
+    image: postgres:alpine
     volumes:
       - scrum-data:/var/lib/postgresql/data
     ports:
