@@ -13,7 +13,9 @@ public class DiagnoPlantApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DiagnoPlantApplication.class, args);
+		
 		//creation of folder 'imagesPlante' to store the images
+
 		String path = System.getProperty("user.home");
 		File dir=new File(path+"/imagesPlante");
             if(dir.exists()){
